@@ -8,6 +8,12 @@ export const endpoints = {
   forgotPass_email: "/auth/forgot-password",
   resetPass: "/auth/reset-password",
 
+  // USER
+  getAllUser: "/user/all",
+  get_A_UserProfile: "/user/",
+  deleteUserAccount: "/user/",
+  updateUserProfile: "/user/profile",
+
   // HOSTELS
   getAllHostel: "/hostels",
   singleHostelDetails: "/hostels/",
@@ -19,7 +25,7 @@ export const endpoints = {
   // BOOKINGS
   createBooking: "/bookings",
 
-  // PAYEMENTS
+  // PAYMENTS
   agentFeePayment: "/payments/agent-fee/initiate",
-  verifyPayment:"/payments/verify"
+  verifyPayment: "/payments/verify",
 };

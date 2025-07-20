@@ -10,7 +10,6 @@ import Modal from "../../components/modal/Modal";
 import Spinner from "../../components/spinner/Spinner";
 import { baseUrl, endpoints } from "../../utils/api";
 import axios from "axios";
-import Cookies from "js-cookie";
 import FailedModal from "../../components/failedModal/FailedModal";
 function Login() {
   const navigate = useNavigate();

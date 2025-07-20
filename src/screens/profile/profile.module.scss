@@ -17,9 +17,10 @@
 .sec_02 {
   margin-top: 13px;
   aside {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  text-transform: capitalize;
+ 
     img {
       width: 80px;
       height: 90px;
@@ -34,11 +35,14 @@
     gap: 3px;
     h3 {
       font-family: inter;
-      font-weight: 500;
-      font-size: 18px;
+      font-weight: 600;
+      font-size: 15px;
     }
     p {
       font-family: inter;
+      &::first-letter{
+        text-transform: capitalize;
+      }
     }
     div {
       display: flex;
@@ -126,6 +130,7 @@
 .sec_04 {
   margin-top: 13px;
   width: 100%;
+  text-transform: capitalize;
   table {
     border-collapse: collapse;
     border: solid 1.5px;

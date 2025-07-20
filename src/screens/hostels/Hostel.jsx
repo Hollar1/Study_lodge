@@ -5,7 +5,6 @@ import { endpoints } from "../../utils/api";
 import NavBar from "../../components/navBar/NavBar";
 import styles from "../hostels/hostel.module.scss";
 import axiosInstance from "../../utils/axiosInstance";
-import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -19,7 +18,7 @@ function Hostel() {
   const [userToken, setUserToken] = useState(null);
 
   useEffect(() => {
-    const userToken = Cookies.get("userToken");
+    const userToken = localStorage.getItem("userToken");
     setUserToken(userToken);
   }, [userToken]);
   const [hostelDetails, setHostelDetails] = useState(null);

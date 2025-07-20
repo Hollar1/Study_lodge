@@ -1,18 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../profile/profile.module.scss";
-import female_icon from "../../assets/images/female_icon.webp";
-import male_icon from "../../assets/images/male_icon.webp";
 import Button from "../../components/button/Button";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
+import { endpoints } from "../../utils/api";
 
 function Profile() {
   const navigate = useNavigate();
+  const [user_id, setUserId] = useState(null);
+
+  const [data, setData] = useState(null);
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");
     navigate("/");
   };
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    setUserId(userId);
+  }, []);
+
+  useEffect(() => {
+    const fetchProfileDetails = async () => {
+      try {
+        const response = await axiosInstance.get(
+          `${endpoints.get_A_UserProfile}${user_id}`
+        );
+        if (response) {
+          setData(response.data);
+        }
+      } catch (error) {}
+    };
+    fetchProfileDetails();
+  }, [user_id]);
 
   return (
     <div>
@@ -22,16 +43,27 @@ function Profile() {
         </section>
 
         <section className={styles.sec_02}>
-          {/* <aside>
-            <img src={female_icon} alt="" />
-          </aside> */}
-
           <div>
-            <h3>Umar Kareem </h3>
-            <p>olaumare1@gmail.com</p>
-            <p>09087678976</p>
+            <aside>
+              <h3>Full Name:</h3>
+              <p>
+                {" "}
+                {data?.first_name} {data?.last_name}
+              </p>
+            </aside>
+            <aside>
+              <h3>Email:</h3>
+              <p>
+                {" "}
+                <p style={{ textTransform: "lowercase" }}>{data?.email}</p>
+              </p>
+            </aside>
+            <aside>
+              <h3>Contact:</h3>
+              <p>{data?.phone_number}</p>
+            </aside>
+
             <div>
-              {" "}
               <button className={styles.edit_btn}>Edit Profile</button>{" "}
               <button className={styles.logout_btn} onClick={handleLogout}>
                 Logout
@@ -51,19 +83,39 @@ function Profile() {
             <tbody>
               <tr className={styles.agentFee_sec}>
                 <td>Agent Fee</td>
-                <td>$700.00</td>
+                <td>
+                  {data?.agentFeePayment?.amount.toLocaleString("en-NG", {
+                    style: "currency",
+                    currency: "NGN",
+                  })}
+                </td>
                 <td>Paid</td>
               </tr>
 
               <tr className={styles.commissionFee_sec}>
                 <td>Caution Fee</td>
-                <td>$300.00</td>
+                <td>
+                  {" "}
+                  {data?.agentFeePayment?.room?.caution_fee.toLocaleString(
+                    "en-NG",
+                    {
+                      style: "currency",
+                      currency: "NGN",
+                    }
+                  )}
+                </td>
                 <td>Paid</td>
               </tr>
 
               <tr className={styles.cautionFee_sec}>
                 <td>Rent Fee</td>
-                <td>$1,700.00</td>
+                <td>
+                  {" "}
+                  {data?.agentFeePayment?.room?.price.toLocaleString("en-NG", {
+                    style: "currency",
+                    currency: "NGN",
+                  })}
+                </td>
                 <td>Waiting...</td>
               </tr>
             </tbody>
@@ -81,15 +133,15 @@ function Profile() {
             <tbody>
               <tr>
                 <td>Hostel's Name</td>
-                <td>Scholar's Hostel</td>
+                <td>{data?.agentFeePayment?.hostel?.hostel_name}</td>
               </tr>
               <tr>
                 <td>Unit</td>
-                <td>Scholar's Hostel</td>
+                <td>{data?.agentFeePayment?.room?.unit}</td>
               </tr>
               <tr>
                 <td>Apartment</td>
-                <td>Scholar's Hostel</td>
+                <td>{data?.agentFeePayment?.room?.room_number}</td>
               </tr>
               <tr>
                 <td>Rent Length</td>
@@ -133,6 +185,13 @@ function Profile() {
             <address>F/ab55, iku , ikare akoko, Ondo state, Nigeria.</address>
           </div>
         </section>
+        <button
+          onClick={() => {
+            navigate("/receipt-page");
+          }}
+        >
+          RECEIPT PAGE
+        </button>
       </div>
     </div>
   );

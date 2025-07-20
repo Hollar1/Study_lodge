@@ -9,13 +9,14 @@ import { useEffect, useState } from "react";
 import ForgotPass_otp from "./screens/forgotPass_otp/ForgotPass_otp";
 import Hostel from "./screens/hostels/Hostel";
 import BookInspection from "./screens/bookInspection/BookInspection";
-import PaymentCallback from "./components/paymentCallBack/PaymentCallBack";
+import ReceiptPage from "../src/components/receiptPage/ReceiptPage"
 import Profile from "./screens/profile/Profile";
 import About from "./screens/about/About";
 import JobVacancy from "./screens/jobVacancy/JobVacancy";
 import Terms_conditions from "./screens/terms_condition/Terms_conditions";
 import PrivacyPolicy from "./screens/privacyPolicy/PrivacyPolicy";
 import HelpSupport from "./screens/helpSupport/HelpSupport";
+import AdminDashBoard from "./screens/ADMIN/adminDashBoard/AdminDashBoard";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -44,7 +45,7 @@ function App() {
             <Route path="/forgot-pass-email" element={<ForgotPassEmail />} />
             <Route path="/forgot-pass-otp" element={<ForgotPass_otp />} />
             <Route path="/hostel/:hostel_id" element={<Hostel />} />
-            <Route path="/payment-callback" element={<PaymentCallback />} />
+            <Route path="/receipt-page" element={<ReceiptPage/>} />
             <Route path="/profile/:user_id" element={<Profile />} />
             <Route path="/about" element={<About />} />
             <Route path="/job-vacancy" element={<JobVacancy />} />
@@ -55,6 +56,7 @@ function App() {
               path="/book-inspection/:room_id"
               element={<BookInspection />}
             />
+            <Route path="/admin-dashboard" element={<AdminDashBoard />} />
           </Routes>
         </Router>
       ) : (

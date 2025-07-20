@@ -6,15 +6,14 @@ import { endpoints } from "../../utils/api";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import Button from "../../components/button/Button";
 import { IoTimeOutline } from "react-icons/io5";
-import Modal from "../../components/modal/Modal";
 import Spinner from "../../components/spinner/Spinner";
 
 function BookInspection() {
-  const [showModal, setShowModal] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
 
   const { room_id } = useParams();
 
+  const { origin } = window.location;
   const [roomDetails, setRoomDetails] = useState({});
 
   const [inspection_date, setInspection_date] = useState("");
@@ -23,8 +22,6 @@ function BookInspection() {
   const [showSelectTime, setShowSelectTime] = useState("");
 
   const [hostelDetails, setHostelDetails] = useState({});
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (inspection_time) {
@@ -39,6 +36,7 @@ function BookInspection() {
           `${endpoints.get_A_room}${room_id}`
         );
         const hostel_id = response.data.hostel;
+
         fetchHostelDetails(hostel_id);
 
         setRoomDetails(response.data);
@@ -68,8 +66,7 @@ function BookInspection() {
       const payload = {
         hostel_id: roomDetails.hostel,
         room_id: roomDetails._id,
-        inspection_date: "",
-        inspection_time: "",
+        inspection_date_time: `${inspection_date}_${inspection_time}`,
       };
 
       const response = await axiosInstance.post(
@@ -79,17 +76,18 @@ function BookInspection() {
 
       if (response) {
         const booking_id = response.data._id;
-           agentFeePayment(booking_id);
+        agentFeePayment(booking_id);
+
         setTimeout(() => {
-          setShowSpinner(false)
+          setShowSpinner(false);
         }, 4500);
       }
     } catch (error) {
       console.log(error.response?.data || error.message);
       setTimeout(() => {
-        setShowSpinner(false)
+        setShowSpinner(false);
       }, 4500);
-    } 
+    }
   };
 
   const agentFeePayment = async (booking_id) => {
@@ -98,22 +96,19 @@ function BookInspection() {
       room_id: roomDetails._id,
       hostel_id: roomDetails.hostel,
       booking_id: booking_id,
+      callback_url: `${origin}/receipt-page`,
     };
+
     try {
       const response = await axiosInstance.post(
         `${endpoints.agentFeePayment}`,
         paymentDetails
       );
       if (response) {
-      
-
-
-
-
-
-
+        // console.log(response);
         const transactionPage = response.data.checkoutLink;
-        window.location.href = `${transactionPage}`;
+
+        // window.location.href = `${transactionPage}`;
       }
     } catch (error) {
       console.log(error.response.data);
@@ -270,7 +265,6 @@ function BookInspection() {
             />
           </section>
         </form>
-       
       </div>
     </div>
   );
