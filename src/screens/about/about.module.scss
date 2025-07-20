@@ -1,0 +1,54 @@
+.ramp {
+//   margin-top: var(--rap-marginTop);
+  background-color: var(--background-color);
+}
+
+.sec_1 {
+  padding-top: var(--general-padding-top);
+  padding-left: var(--general-padding-left);
+  padding-right: var(--general-padding-right);
+}
+
+.sec_1 main {
+  text-align: center;
+  color: #191970;
+  text-decoration-line: underline;
+  font-size: var(--header-fontSize);
+  font-family: roboto;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.sec_00 {
+  margin-top: 15px;
+}
+
+.sec_1 p {
+  font-family: roboto;
+  font-weight: 400;
+  font-size: var(--font-size);
+}
+
+.sec_1 b {
+  color: #191970;
+  font-family: roboto;
+  font-size: var(--subHeader-fontSize);
+  font-weight: 600;
+}
+
+.sec_1 li {
+  font-family: roboto;
+  font-weight: 400;
+  font-size: var(--font-size);
+}
+
+.sec_1 li b {
+  color: black;
+}
+
+.sec_2 {
+  margin-top: 14px;
+  padding-left: var(--general-padding-left);
+  padding-right: var(--general-padding-right);
+  padding-bottom: var(--general-padding-bottom);
+}

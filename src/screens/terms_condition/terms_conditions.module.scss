@@ -1,0 +1,63 @@
+.parent_ramp {
+    background-color: var(--background-color);
+    width: 100%;
+  }
+  
+  .ramp {
+    margin-top:var(--rap-marginTop);
+    background-color: var(--background-color);
+    padding-left: var(--general-padding-left);
+    padding-right: var(--general-padding-right);
+  
+  }
+  
+  .ramp header h3 {
+    color: #191970;
+    text-align: center;
+    padding-top: 30px;
+    text-decoration-line: underline;
+    font-family: roboto;
+    width: 600;
+    font-size: 18px;
+  }
+  
+  .sec_1 {
+    margin-top: 15px;
+  }
+  
+  .sec_1 p{
+    font-family: roboto;
+    font-weight: 400;
+    font-size: var(--font-size);
+  }
+  
+  .sec_1 div {
+    margin-top: 15px;
+  }
+  .sec_1 div li{
+    font-family: roboto;
+    font-weight: 400;
+    font-size: var(--font-size);
+  }
+  
+  .sec_1 div b {
+    color: #191970;
+    font-family: roboto;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .sec_2 {
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+  
+  main p {
+    color: red;
+  }
+  
+  main p i {
+    color: rgb(93, 93, 59);
+    margin-left: 5px;
+  }
+  

@@ -1,0 +1,30 @@
+.parent_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0% 15px;
+  background-color: antiquewhite;
+}
+
+.sec_01 {
+  text-align: center;
+  font-family: roboto;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+}
+
+.sec_02 {
+  font-family: roboto;
+  font-size: 16px;
+  margin-top: 15px;
+}
+.sec_03 {
+  margin-top: 10px;
+  font-family: roboto;
+  font-style: italic;
+  font-size: 20px;
+}
+.sec_03 p {
+  margin-top: 5px;
+}

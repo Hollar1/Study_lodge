@@ -1,0 +1,51 @@
+.parent_ramp {
+  background-color: rgb(237, 242, 247);
+  width: 100%;
+}
+
+.ramp {
+  background-color: rgb(237, 242, 247);
+  padding-left: var(--general-padding-left);
+  padding-right: var(--general-padding-right);
+}
+
+.sec_1 header {
+  padding-top: var(--general-padding-top);
+  text-align: center;
+  color: #191970;
+  text-decoration-line: underline;
+  margin-bottom: 15px;
+}
+.sec_1 div {
+  margin-top: 15px;
+}
+
+.sec_1 b {
+  color: #191970;
+  width: 600;
+  font-family: roboto;
+  font-size: 14px;
+}
+
+.sec_1 div li {
+  width: 600;
+  font-family: roboto;
+  font-size: 14px;
+}
+
+.sec_1 div i {
+  color: rgb(93, 93, 59);
+}
+.sec_1 i {
+  color: rgb(93, 93, 59);
+}
+
+.sec_2 {
+  padding-bottom: var(--general-padding-bottom);
+}
+
+.sec_1 p {
+  font-family: roboto;
+  font-weight: 400;
+  font-size: var(--font-size);
+}

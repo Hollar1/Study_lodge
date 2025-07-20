@@ -1,0 +1,99 @@
+.parent_ramp {
+    background-color: rgb(237, 242, 247);
+    width: 100%;
+  }
+  
+  .ramp {
+    margin-top:var(--rap-marginTop);
+    background-color: rgb(237, 242, 247);
+  }
+  
+  .sec_1 main {
+    padding-top: 30px;
+    text-align: center;
+    color: #191970;
+    text-decoration-line: underline;
+    font-size: var(--header-fontSize);
+    font-family: roboto;
+    font-weight: 600;
+  }
+  .sec_2 {
+    margin-top: 20px;
+    padding: 0px 7px;
+  }
+  
+  .sec_2 p {
+    font-family: roboto;
+    font-weight: 400;
+    font-size: var(--font-size);
+  }
+  
+  .sec_3 {
+    padding-left: 23px;
+    padding-right: 5px;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  .sec_3 b {
+    color: #191970;
+    font-family: roboto;
+    font-size: var(--subHeader-fontSize);
+    font-weight: 600;
+  }
+  
+  .sec_3 ol {
+    font-family: roboto;
+    font-weight: 400;
+    font-size: var(--font-size);
+  }
+  
+  .sec_4 {
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sec_4 b {
+  
+    color: #191970;
+    font-family: roboto;
+    font-size:var(--subHeader-fontSize);
+    font-weight: 600;
+  }
+  
+  .sec_4 i {
+    background-color: rgb(212, 208, 208);
+    padding: 0px 7px;
+  }
+  
+  .sec_4 li {
+    font-family: roboto;
+    font-weight: 400;
+    font-size: var(--font-size);
+  }
+  
+  
+  .sec_4 main b {
+    color: black;
+  }
+  
+  .sec_4 p{
+    font-family: roboto;
+    font-weight: 400;
+    font-size: var(--font-size);
+  }
+  .sec_4 div{
+    font-family: robot;
+    font-weight: 400;
+  }
+  
+  .sec_4  main b{
+    font-family: robot;
+    font-weight: 560;
+    font-size:var(--font-size);
+  }
+  
+  .last_main{
+    margin-bottom: 30px;
+  }
