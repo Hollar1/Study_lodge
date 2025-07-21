@@ -9,14 +9,18 @@ import { useEffect, useState } from "react";
 import ForgotPass_otp from "./screens/forgotPass_otp/ForgotPass_otp";
 import Hostel from "./screens/hostels/Hostel";
 import BookInspection from "./screens/bookInspection/BookInspection";
-import ReceiptPage from "../src/components/receiptPage/ReceiptPage"
+import ReceiptPage from "../src/components/receiptPage/ReceiptPage";
 import Profile from "./screens/profile/Profile";
 import About from "./screens/about/About";
 import JobVacancy from "./screens/jobVacancy/JobVacancy";
 import Terms_conditions from "./screens/terms_condition/Terms_conditions";
 import PrivacyPolicy from "./screens/privacyPolicy/PrivacyPolicy";
 import HelpSupport from "./screens/helpSupport/HelpSupport";
-import AdminDashBoard from "./screens/ADMIN/adminDashBoard/AdminDashBoard";
+
+import AdminDashboard from "./ADMIN/adminDashboard/AdminDashboard";
+import AdminHome from "./ADMIN/adminHome/AdminHome";
+import AllHostels from "../src/ADMIN/allHostels/AllHostels";
+import AddRoom from "./ADMIN/addRoom/AddRoom";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -34,18 +38,18 @@ function App() {
 
   return (
     <div>
-      {isMobile ? (
+      {/* {   isMobile ? ( */}
         <Router>
           <ScrollToTop />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<AdminHome />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up-otp" element={<SignUp_otp />} />
             <Route path="/forgot-pass-email" element={<ForgotPassEmail />} />
             <Route path="/forgot-pass-otp" element={<ForgotPass_otp />} />
             <Route path="/hostel/:hostel_id" element={<Hostel />} />
-            <Route path="/receipt-page" element={<ReceiptPage/>} />
+            <Route path="/receipt-page" element={<ReceiptPage />} />
             <Route path="/profile/:user_id" element={<Profile />} />
             <Route path="/about" element={<About />} />
             <Route path="/job-vacancy" element={<JobVacancy />} />
@@ -56,19 +60,21 @@ function App() {
               path="/book-inspection/:room_id"
               element={<BookInspection />}
             />
-            <Route path="/admin-dashboard" element={<AdminDashBoard />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/all-hostels" element={<AllHostels />} />
+            <Route path="/add-room/:hostelId" element={<AddRoom/>} />
           </Routes>
         </Router>
-      ) : (
-        <div className="mobileOnly">
+      {/* ) : ( */}
+        {/* <div className="mobileOnly">
           <h3>Heads up!</h3>
           <p>
             This website is currently designed for mobile devices only. We're
             working on bringing full desktop support soon. Thanks for your
             patience!
           </p>
-        </div>
-      )}
+        </div> */}
+      {/* )} */}
     </div>
   );
 }

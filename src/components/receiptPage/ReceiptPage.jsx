@@ -6,20 +6,19 @@ import styles from "../receiptPage/receiptPage.module.scss";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 
 function receiptPage() {
   const printRef = useRef();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
-  const [agentFeePayment, setAgentFeePayment] = useState(true);
-  const [roomFeePayment, setRoomFeePayment] = useState(false);
+  const [agentFeePayment, setAgentFeePayment] = useState(null);
+  const [roomFeePayment, setRoomFeePayment] = useState(null);
+
   const [inspection_date, setInspection_date] = useState(null);
   const [inspection_time, setInspection_time] = useState(null);
-
   const date_time_replace =
     agentFeePayment?.booking?.inspection_date_time.replace("_", "  / Time: ");
-
   useEffect(() => {
     const dateSlice = date_time_replace?.slice(0, 11);
     const timeSlice = date_time_replace?.slice(-17);
@@ -35,35 +34,65 @@ function receiptPage() {
       if (response) {
         setAgentFeePayment(response.data?.agentFeePayment);
         setRoomFeePayment(response.data?.hostel);
+        // console.log(response.data);
       }
     };
     fetchUserDetails();
   }, [userId]);
+
   const handleDownload = async () => {
     const element = printRef.current;
-
     // Apply a temporary scale style to reduce everything (fonts, spacing)
     element.style.transform = "scale(0.8)";
     element.style.transformOrigin = "top left";
-
     const canvas = await html2canvas(element, { scale: 3 });
-
     // Reset the scale to normal after capture
     element.style.transform = "";
     element.style.transformOrigin = "";
-
     const imgData = canvas.toDataURL("image/png");
     const imgWidth = 210;
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
     const pdf = new jsPDF("p", "mm", [imgHeight, imgWidth]);
     pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
     pdf.save("receipt.pdf");
 
     setTimeout(() => {
-      navigate("/");
+      navigate("/", { replace: true });
     }, 1000);
   };
+
+  const handleUpdateRoomStatus = async () => {
+    try {
+      const roomId = agentFeePayment?.room?._id;
+
+      const payload = {
+        room_number: agentFeePayment?.room?.room_number,
+        unit: agentFeePayment?.room?.unit,
+        agent_fee: agentFeePayment?.room?.agent_fee,
+        price: agentFeePayment?.room?.price,
+        caution_fee: agentFeePayment?.room?.caution_fee,
+        commission_fee: agentFeePayment?.room?.commission_fee,
+        status: "booked",
+        hostel: agentFeePayment?.hostel?._id,
+      };
+
+      // console.log(payload)
+
+      const response = await axiosInstance.patch(
+        `${endpoints.update_A_room}${roomId}`,
+        payload
+      );
+      if (response) {
+        console.log(response.data);
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    if (agentFeePayment?.status === "success") {
+      handleUpdateRoomStatus();
+    }
+  }, [agentFeePayment]);
 
   return (
     <div className={styles.parent_wrapper}>
@@ -81,12 +110,10 @@ function receiptPage() {
                 </p>
               </header>
             </section>
-
             <section className={styles.sec_02}>
               <header>
                 <h3>Payment Summary</h3>
               </header>
-
               <article className={styles.article_01}>
                 <div>
                   <p>Payment Status:</p>
@@ -94,7 +121,6 @@ function receiptPage() {
                     {agentFeePayment?.status}
                   </span>
                 </div>
-
                 <div>
                   <p>Payment For:</p>
                   <span className={styles.payment_purpose}>
@@ -113,57 +139,43 @@ function receiptPage() {
                 </div>
               </article>
             </section>
-
             <section className={styles.sec_03}>
               <header>
                 <h3>Booking Information</h3>
               </header>
-
               <article className={styles.article_02}>
                 <div>
                   <p>Hostel Name:</p>
-                  <span>{agentFeePayment?.status}</span>
+                  <span>{agentFeePayment?.hostel?.hostel_name}</span>
                 </div>
-
                 <div>
                   <p>Apartment Booked:</p>
-                  <span>{agentFeePayment?.payment_type}</span>
+                  <span> {agentFeePayment?.room?.room_number}</span>
                 </div>
 
                 <div>
                   <p>Unit Type:</p>
-                  <span>
-                    {agentFeePayment?.amount?.toLocaleString("en-NG", {
-                      style: "currency",
-                      currency: "NGN",
-                    })}
-                  </span>
+                  <span>{agentFeePayment?.room?.unit}</span>
                 </div>
-
                 <hr />
-
                 <aside className={styles.article_03}>
                   <header>Inspection Date & TIme</header>
-
                   <div>
                     <p>Date:</p>
                     <span>{inspection_date}</span>
                   </div>
-
                   <div>
                     <p>Time:</p>
                     <span>{inspection_time}</span>
                   </div>
                 </aside>
                 <hr />
-
                 <aside className={styles.article_04}>
-                  <header>Hostel Address:</header>
-                  <div>{agentFeePayment?.hostel?.address}</div>
+                  <header>Hostel Address: </header>
+                  <address>{agentFeePayment?.hostel?.address}</address>
                 </aside>
               </article>
             </section>
-
             <section className={styles.sec_04}>
               <p>
                 Please ensure to arrive on time for your inspection. If you have

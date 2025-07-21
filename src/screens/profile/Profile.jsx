@@ -7,7 +7,6 @@ import { endpoints } from "../../utils/api";
 
 function Profile() {
   const navigate = useNavigate();
-  const [user_id, setUserId] = useState(null);
 
   const [data, setData] = useState(null);
 
@@ -16,24 +15,50 @@ function Profile() {
     navigate("/");
   };
 
-  useEffect(() => {
-    const userId = localStorage.getItem("userId");
-    setUserId(userId);
-  }, []);
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     const fetchProfileDetails = async () => {
       try {
         const response = await axiosInstance.get(
-          `${endpoints.get_A_UserProfile}${user_id}`
+          `${endpoints.get_A_UserProfile}${userId}`
         );
         if (response) {
           setData(response.data);
         }
-      } catch (error) {}
+      } catch (error) {
+        if (error) {
+          console.log(error.response?.data);
+        }
+      }
     };
     fetchProfileDetails();
-  }, [user_id]);
+  }, [userId]);
+
+  const handlePayRent = async () => {
+    try {
+      const { origin } = window.location;
+      const payload = {
+        amount: data?.agentFeePayment?.room?.price,
+        room_id: data?.agentFeePayment?.room?._id,
+        hostel_id: data?.agentFeePayment?.hostel?._id,
+        booking_id: data?.agentFeePayment?.booking?._id,
+        callback_url: `${origin}/receipt-page`,
+      };
+      console.log(payload);
+      const response = await axiosInstance.post(
+        `${endpoints.roomFeePayment}`,
+        payload
+      );
+      console.log(response);
+      const checkoutLink = response?.data?.checkoutLink;
+      window.location.href = checkoutLink;
+    } catch (error) {
+      if (error) {
+        console.log(error?.response?.data);
+      }
+    }
+  };
 
   return (
     <div>
@@ -55,7 +80,7 @@ function Profile() {
               <h3>Email:</h3>
               <p>
                 {" "}
-                <p style={{ textTransform: "lowercase" }}>{data?.email}</p>
+                <span style={{ textTransform: "lowercase" }}>{data?.email}</span>
               </p>
             </aside>
             <aside>
@@ -89,7 +114,11 @@ function Profile() {
                     currency: "NGN",
                   })}
                 </td>
-                <td>Paid</td>
+                {data?.agentFeePayment?.status === "success" ? (
+                  <td>Paid</td>
+                ) : (
+                  <td>waiting...</td>
+                )}
               </tr>
 
               <tr className={styles.commissionFee_sec}>
@@ -104,7 +133,7 @@ function Profile() {
                     }
                   )}
                 </td>
-                <td>Paid</td>
+                <td>N/A</td>
               </tr>
 
               <tr className={styles.cautionFee_sec}>
@@ -116,50 +145,58 @@ function Profile() {
                     currency: "NGN",
                   })}
                 </td>
+
                 <td>Waiting...</td>
               </tr>
             </tbody>
           </table>
         </section>
 
-        <section className={styles.sec_04}>
-          <table>
-            <thead>
-              <tr>
-                <th colSpan={2}>Rent Details</th>
-              </tr>
-            </thead>
+        {data?.roomPricePayment && (
+          <section className={styles.sec_04}>
+            <table>
+              <thead>
+                <tr>
+                  <th colSpan={2}>Rent Details</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              <tr>
-                <td>Hostel's Name</td>
-                <td>{data?.agentFeePayment?.hostel?.hostel_name}</td>
-              </tr>
-              <tr>
-                <td>Unit</td>
-                <td>{data?.agentFeePayment?.room?.unit}</td>
-              </tr>
-              <tr>
-                <td>Apartment</td>
-                <td>{data?.agentFeePayment?.room?.room_number}</td>
-              </tr>
-              <tr>
-                <td>Rent Length</td>
-                <td>Scholar's Hostel</td>
-              </tr>
-              <tr>
-                <td>Start Date</td>
-                <td>Scholar's Hostel</td>
-              </tr>
-              <tr>
-                <td>Due Date</td>
-                <td>Scholar's Hostel</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+              <tbody>
+                <tr>
+                  <td>Hostel's Name</td>
+                  <td>{data?.agentFeePayment?.hostel?.hostel_name}</td>
+                </tr>
+                <tr>
+                  <td>Unit</td>
+                  <td>{data?.agentFeePayment?.room?.unit}</td>
+                </tr>
+                <tr>
+                  <td>Apartment</td>
+                  <td>{data?.agentFeePayment?.room?.room_number}</td>
+                </tr>
+                <tr>
+                  <td>Rent Length</td>
+                  <td>Scholar's Hostel</td>
+                </tr>
+                <tr>
+                  <td>Start Date</td>
+                  <td>Scholar's Hostel</td>
+                </tr>
+                <tr>
+                  <td>Due Date</td>
+                  <td>Scholar's Hostel</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        )}
+
         <section className={styles.sec_05}>
-          <Button type={"submit"} children={"Renew Rent"} />
+          <Button
+            onClick={handlePayRent}
+            type={"submit"}
+            children={"Pay Rent"}
+          />
         </section>
 
         <section className={styles.sec_06}>

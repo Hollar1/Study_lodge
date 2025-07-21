@@ -1,0 +1,15 @@
+.sec_01 {
+  nav {
+    height: 50px;
+    width: 100%;
+    padding: 15px 30px;
+    background-color: rgb(227, 224, 224);
+    font-family: roboto;
+    font-weight: 700;
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.5px;
+    border-bottom: solid 3px rgb(83, 83, 83);
+  }
+}

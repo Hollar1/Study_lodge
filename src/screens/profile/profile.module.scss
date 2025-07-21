@@ -17,10 +17,10 @@
 .sec_02 {
   margin-top: 13px;
   aside {
-  display: flex;
-  gap: 10px;
-  text-transform: capitalize;
- 
+    display: flex;
+    gap: 10px;
+    text-transform: capitalize;
+
     img {
       width: 80px;
       height: 90px;
@@ -40,7 +40,7 @@
     }
     p {
       font-family: inter;
-      &::first-letter{
+      &::first-letter {
         text-transform: capitalize;
       }
     }
@@ -68,7 +68,7 @@
         margin-top: 5px;
         letter-spacing: 0.5px;
         width: 80px;
-        &:active{
+        &:active {
           background-color: #191970;
         }
       }
@@ -203,7 +203,7 @@
       grid-template-columns: repeat(2, 1fr);
       place-content: center;
       gap: 10px;
-      margin-top:7px;
+      margin-top: 7px;
       font-family: inter;
       font-size: 14px;
     }
@@ -211,7 +211,7 @@
 }
 
 .address_div {
-  margin-top:7px;
+  margin-top: 7px;
   display: flex;
   gap: 5px;
   p {
@@ -219,3 +219,4 @@
     font-weight: 550;
   }
 }
+

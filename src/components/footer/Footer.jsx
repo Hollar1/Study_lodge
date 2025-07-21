@@ -15,7 +15,7 @@ function Footer() {
     setUserToken(userToken);
     setUserId(userId);
   }, [userId]);
-  console.log(userId);
+
 
   return (
     <div>
