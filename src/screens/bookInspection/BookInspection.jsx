@@ -105,10 +105,9 @@ function BookInspection() {
         paymentDetails
       );
       if (response) {
-        // console.log(response);
         const transactionPage = response.data.checkoutLink;
 
-        // window.location.href = `${transactionPage}`;
+        window.location.href = `${transactionPage}`;
       }
     } catch (error) {
       console.log(error.response.data);
