@@ -1,9 +1,15 @@
+.parent_wrapper {
+  background-color: rgb(248, 248, 236);
+  height: 100vh;
+}
+
 .agentFee_wrapper {
-  padding: 0px 30px;
+  padding: 10px 30px;
+  background-color: rgb(248, 248, 236);
 }
 
 .sec_01 {
-  margin-top: 10px;
+  // padding-top: 10px;
   header {
     display: flex;
     flex-direction: column;
@@ -37,7 +43,7 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     background-color: rgb(202, 239, 227);
-    padding: 8px 0px;
+    padding: 7px 0px;
     h3 {
       font-size: 16px;
       font-family: roboto;
@@ -57,7 +63,7 @@
       justify-content: space-between;
       font-family: inter;
       font-size: 15px;
-      margin-top: 10px;
+      margin-top: 8px;
       p {
         color: rgb(86, 84, 84);
         font-size: 14px;
@@ -88,7 +94,7 @@
 .sec_03 {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15px;
+  margin-top: 10px;
   border-radius: 5px;
 
   header {
@@ -98,7 +104,7 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     background-color: rgb(146, 237, 208);
-    padding: 8px 0px;
+    padding: 5px 0px;
     h3 {
       font-size: 16px;
       font-family: roboto;
@@ -136,6 +142,8 @@
     font-family: roboto;
     font-weight: 600;
     margin-bottom: -5px;
+    display: flex;
+    justify-content: left;
   }
 }
 
@@ -155,18 +163,37 @@
 }
 
 .sec_04 {
-  padding: 15px;
-  margin-top: 15px;
+  padding: 10px;
+  margin-top: 10px;
   color: white;
   font-family: inter;
   font-size: 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
   border-radius: 15px;
   background: linear-gradient(
     rgb(2, 92, 92),
     rgb(63, 117, 99),
     rgb(75, 119, 120)
   );
+  i {
+    color: rgb(195, 234, 208);
+    color: green;
+    color: rgb(235, 222, 145);
+  }
+}
+.button_div {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button {
+    width: 85%;
+    border-radius: 5px;
+    background-color: #191970;
+    color: white;
+    height: 35px;
+    font-size: 17px;
+  }
 }
