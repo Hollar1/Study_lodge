@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
 function AdminNavBar() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div>
       <section className={styles.sec_01}>
@@ -13,10 +13,23 @@ function AdminNavBar() {
           <div>
             <FontAwesomeIcon icon={faBars} />
           </div>
-          <div onClick={()=>{navigate("all-hostels")}}>Hostels</div>
+          <div
+            onClick={() => {
+              navigate("all-hostels");
+            }}
+          >
+            Hostels
+          </div>
           <div>Rooms</div>
           <div>Members</div>
           <div>Create Hostel</div>
+          <div
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Web-Page
+          </div>
         </nav>
       </section>
     </div>

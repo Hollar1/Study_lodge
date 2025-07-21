@@ -65,6 +65,7 @@ function NavBar() {
               <span>{hostelDetail.address}</span>
             </button>
           ))}
+     <button onClick={()=>{navigate("/admin-dashboard")}}>Admin Dashboard</button>
         </section>
       )}
     </div>

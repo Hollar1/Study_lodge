@@ -16,9 +16,7 @@ import JobVacancy from "./screens/jobVacancy/JobVacancy";
 import Terms_conditions from "./screens/terms_condition/Terms_conditions";
 import PrivacyPolicy from "./screens/privacyPolicy/PrivacyPolicy";
 import HelpSupport from "./screens/helpSupport/HelpSupport";
-
 import AdminDashboard from "./ADMIN/adminDashboard/AdminDashboard";
-import AdminHome from "./ADMIN/adminHome/AdminHome";
 import AllHostels from "../src/ADMIN/allHostels/AllHostels";
 import AddRoom from "./ADMIN/addRoom/AddRoom";
 
@@ -39,34 +37,34 @@ function App() {
   return (
     <div>
       {/* {   isMobile ? ( */}
-        <Router>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<AdminHome />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/sign-up-otp" element={<SignUp_otp />} />
-            <Route path="/forgot-pass-email" element={<ForgotPassEmail />} />
-            <Route path="/forgot-pass-otp" element={<ForgotPass_otp />} />
-            <Route path="/hostel/:hostel_id" element={<Hostel />} />
-            <Route path="/receipt-page" element={<ReceiptPage />} />
-            <Route path="/profile/:user_id" element={<Profile />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/job-vacancy" element={<JobVacancy />} />
-            <Route path="/terms-conditions" element={<Terms_conditions />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/help-support" element={<HelpSupport />} />
-            <Route
-              path="/book-inspection/:room_id"
-              element={<BookInspection />}
-            />
-            <Route path="/admin-dashboard" element={<AdminDashboard />} />
-            <Route path="/all-hostels" element={<AllHostels />} />
-            <Route path="/add-room/:hostelId" element={<AddRoom/>} />
-          </Routes>
-        </Router>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up-otp" element={<SignUp_otp />} />
+          <Route path="/forgot-pass-email" element={<ForgotPassEmail />} />
+          <Route path="/forgot-pass-otp" element={<ForgotPass_otp />} />
+          <Route path="/hostel/:hostel_id" element={<Hostel />} />
+          <Route path="/receipt-page" element={<ReceiptPage />} />
+          <Route path="/profile/:user_id" element={<Profile />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/job-vacancy" element={<JobVacancy />} />
+          <Route path="/terms-conditions" element={<Terms_conditions />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/help-support" element={<HelpSupport />} />
+          <Route
+            path="/book-inspection/:room_id"
+            element={<BookInspection />}
+          />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/all-hostels" element={<AllHostels />} />
+          <Route path="/add-room/:hostelId" element={<AddRoom />} />
+        </Routes>
+      </Router>
       {/* ) : ( */}
-        {/* <div className="mobileOnly">
+      {/* <div className="mobileOnly">
           <h3>Heads up!</h3>
           <p>
             This website is currently designed for mobile devices only. We're
