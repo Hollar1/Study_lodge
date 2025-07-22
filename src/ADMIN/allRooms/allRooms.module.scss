@@ -1,0 +1,129 @@
+.parent_wrapper {
+  padding: 20px;
+}
+
+.sec_01 {
+  position: fixed;
+  top: 0%;
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+  h3 {
+    font-size: 35px;
+    font-weight: 900;
+    font-family: roboto;
+    background: linear-gradient(green, blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.sec_02 {
+  margin-top: 15px;
+  width: 380px;
+  height: 35px;
+  border: solid gray 2px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 0% 5px;
+  input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    &::placeholder {
+      font-size: 15px;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.sec_03 {
+  margin-top: 130px;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: solid gray 1.5px;
+
+    thead,
+    tr,
+    th,
+    tbody,
+    td {
+      border: solid gray 1.5px;
+    }
+    th {
+      padding: 5px 0px;
+      background-color: rgb(227, 224, 224);
+      font-family: roboto;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    tr {
+      padding: 3px;
+      td {
+        &:nth-child(3) {
+          text-align: center;
+        }
+
+        &:nth-child(4) {
+          text-align: center;
+        }
+
+        &:nth-child(5) {
+          text-align: center;
+        }
+
+        &:nth-child(6) {
+          text-align: center;
+        }
+
+        &:nth-child(7) {
+          text-align: center;
+        }
+
+        &:nth-child(8) {
+          text-align: center;
+          color: rgb(191, 4, 4);
+          font-size: 20px;
+          &:hover {
+            background-color: rgb(219, 168, 168);
+            cursor: pointer;
+          }
+        }
+
+        &:nth-child(9) {
+          text-align: center;
+          color: blue;
+          font-size: 20px;
+          &:hover {
+            background-color: rgb(205, 205, 244);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    td {
+      padding: 5px;
+      font-family: inter;
+      text-transform: capitalize;
+      font-weight: 400;
+    }
+  }
+}
+
+.available {
+  color: green;
+  background-color: rgb(242, 238, 229);
+}
+.booked {
+  background-color: rgb(233, 244, 233);
+}
+.occupied {
+  color: yellow;
+}

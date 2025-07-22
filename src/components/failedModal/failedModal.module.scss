@@ -17,19 +17,22 @@
     background-color: rgb(119, 4, 4);
     border-radius: 8px;
     color: white;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     max-width: 350px;
     animation: modal ease 1.5s forwards;
     h3 {
       text-align: center;
       font-family: roboto;
-      font-weight: 450;
+      font-weight: 550;
+      letter-spacing: 0.5px;
       font-size: 18px;
     }
     p {
       font-family: inter;
       font-family: 400;
-      font-size: 13px;
+      font-size: 15px;
       line-height: 20px;
       letter-spacing: 0.5px;
       margin-top: 5px;

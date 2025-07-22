@@ -11,5 +11,14 @@
     justify-content: space-between;
     letter-spacing: 0.5px;
     border-bottom: solid 3px rgb(83, 83, 83);
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:hover {
+        color: rgb(125, 4, 4);
+        cursor: pointer;
+      }
+    }
   }
 }

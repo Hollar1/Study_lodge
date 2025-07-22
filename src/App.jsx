@@ -19,6 +19,8 @@ import HelpSupport from "./screens/helpSupport/HelpSupport";
 import AdminDashboard from "./ADMIN/adminDashboard/AdminDashboard";
 import AllHostels from "../src/ADMIN/allHostels/AllHostels";
 import AddRoom from "./ADMIN/addRoom/AddRoom";
+import AllRooms from "./ADMIN/allRooms/AllRooms";
+import UpdateRoom from "./ADMIN/updateRoom/UpdateRoom";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -61,6 +63,8 @@ function App() {
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/all-hostels" element={<AllHostels />} />
           <Route path="/add-room/:hostelId" element={<AddRoom />} />
+          <Route path="/all-rooms" element={<AllRooms />} />
+          <Route path="/update-room/:roomId" element={<UpdateRoom />} />
         </Routes>
       </Router>
       {/* ) : ( */}

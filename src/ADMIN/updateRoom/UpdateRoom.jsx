@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import styles from "../addRoom/addRoom.module.scss";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import styles from "../updateRoom/updateRoom.module.scss";
 import Spinner from "../../components/spinner/Spinner";
-import { faL, fas } from "@fortawesome/free-solid-svg-icons";
 import axiosInstance from "../../utils/axiosInstance";
 import { endpoints } from "../../utils/api";
+import Modal from "../../components/modal/Modal";
+function UpdateRoom() {
+  const { roomId } = useParams();
+  const navigate = useNavigate();
 
-function AddRoom() {
-  const { hostelId } = useParams();
+  const [showModal, setShowModal] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
 
+  const [RoomUnit, setRoomUnit] = useState("");
   const [hostelName, setHostelName] = useState("");
 
-  const [showSpinner, setShowSpinner] = useState(false);
+  const [hostelId, setHostelId] = useState("");
 
   const [roomDetails, setRoomDetails] = useState({
     room_number: "",
@@ -32,7 +36,7 @@ function AddRoom() {
     }));
   };
 
-  const handleAddRoom = async (e) => {
+  const handleEditRoom = async (e) => {
     e.preventDefault();
     setShowSpinner(true);
 
@@ -47,11 +51,18 @@ function AddRoom() {
         status: roomDetails.status,
         hostel: hostelId,
       };
-
-      const response = await axiosInstance.post(
-        `${endpoints.addRoom}`,
+      console.log(payload);
+      const response = await axiosInstance.patch(
+        `${endpoints.updateRoom}${roomId}`,
         payload
       );
+      if (response) {
+        setShowModal(true);
+        setTimeout(() => {
+          setShowModal(false);
+          navigate("/admin-dashboard", { replace: true });
+        }, 3000);
+      }
       console.log(response.data);
     } catch (error) {
       if (error) {
@@ -63,11 +74,22 @@ function AddRoom() {
   };
 
   useEffect(() => {
+    const fetchRoom = async () => {
+      const response = await axiosInstance.get(
+        `${endpoints.get_A_room}${roomId}`
+      );
+      setRoomUnit(response.data.unit);
+      setHostelId(response.data.hostel);
+    };
+    fetchRoom();
+  }, [roomId]);
+
+  useEffect(() => {
     const fetchHostel = async () => {
       const response = await axiosInstance.get(
         `${endpoints.singleHostelDetails}${hostelId}`
       );
-      setHostelName(response.data.hostel_name);
+      setHostelName(response.data?.hostel_name);
     };
     fetchHostel();
   }, [hostelId]);
@@ -75,17 +97,18 @@ function AddRoom() {
   return (
     <div>
       {showSpinner && <Spinner />}
+      {showModal && <Modal body={"Room Updated Successfully 👍🏾"} />}
       <section className={styles.sec_01}>
         <header>
           <h3>Building Management System</h3>
-          <p> Add Room To Hostel </p>
+          <p> Updating {RoomUnit} </p>
         </header>
       </section>
       <section className={styles.sec_02}>
         <header>
           <h3>{hostelName}</h3>
         </header>
-        <form onSubmit={handleAddRoom}>
+        <form onSubmit={handleEditRoom}>
           <main>
             <div>
               <label htmlFor="">
@@ -210,4 +233,4 @@ function AddRoom() {
   );
 }
 
-export default AddRoom;
+export default UpdateRoom;
