@@ -28,7 +28,13 @@ function AdminNavBar() {
             Rooms
           </div>
           <div>Members</div>
-          <div>Create Hostel</div>
+          <div
+            onClick={() => {
+              navigate("/create-hostel");
+            }}
+          >
+            Create Hostel
+          </div>
           <div
             onClick={() => {
               navigate("/");

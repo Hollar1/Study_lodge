@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { endpoints } from "../../utils/api";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
@@ -6,13 +6,14 @@ import styles from "../receiptPage/receiptPage.module.scss";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function receiptPage() {
   const printRef = useRef();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const [agentFeePayment, setAgentFeePayment] = useState(null);
+  // console.log(agentFeePayment)
   const [roomFeePayment, setRoomFeePayment] = useState(null);
 
   const [inspection_date, setInspection_date] = useState(null);
@@ -32,9 +33,10 @@ function receiptPage() {
         `${endpoints.get_A_UserProfile}${userId}`
       );
       if (response) {
+        console.log(response.data)
         setAgentFeePayment(response.data?.agentFeePayment);
         setRoomFeePayment(response.data?.hostel);
-        // console.log(response.data);
+
       }
     };
     fetchUserDetails();
@@ -64,6 +66,7 @@ function receiptPage() {
   const handleUpdateRoomStatus = async () => {
     try {
       const roomId = agentFeePayment?.room?._id;
+      console.log(roomId)
 
       const payload = {
         room_number: agentFeePayment?.room?.room_number,
@@ -76,16 +79,18 @@ function receiptPage() {
         hostel: agentFeePayment?.hostel?._id,
       };
 
-      // console.log(payload)
+
 
       const response = await axiosInstance.patch(
-        `${endpoints.update_A_room}${roomId}`,
+        `${endpoints.updateRoom}${roomId}`,
         payload
       );
       if (response) {
         console.log(response.data);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log("this is the error",error.response?.data?.message)
+    }
   };
 
   useEffect(() => {
@@ -94,8 +99,12 @@ function receiptPage() {
     }
   }, [agentFeePayment]);
 
+
+
+
   return (
     <div className={styles.parent_wrapper}>
+      {/* <button onClick={()=>{handleUpdateRoomStatus}}>update room</button> */}
       {agentFeePayment && roomFeePayment ? (
         <div>Room Paid</div>
       ) : agentFeePayment ? (

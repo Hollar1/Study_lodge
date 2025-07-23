@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "../addRoom/addRoom.module.scss";
 import Spinner from "../../components/spinner/Spinner";
-import { faL, fas } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../../components/modal/Modal";
 import axiosInstance from "../../utils/axiosInstance";
 import { endpoints } from "../../utils/api";
 
 function AddRoom() {
   const { hostelId } = useParams();
 
+
+
   const [hostelName, setHostelName] = useState("");
 
   const [showSpinner, setShowSpinner] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [roomDetails, setRoomDetails] = useState({
     room_number: "",
@@ -52,7 +55,13 @@ function AddRoom() {
         `${endpoints.addRoom}`,
         payload
       );
-      console.log(response.data);
+
+      if (response) {
+        setShowModal(true);
+        setTimeout(() => {
+          setShowModal(false);
+        }, 4000);
+      }
     } catch (error) {
       if (error) {
         console.log(error?.response?.data?.message);
@@ -75,6 +84,7 @@ function AddRoom() {
   return (
     <div>
       {showSpinner && <Spinner />}
+      {showModal && <Modal body={"Room Successfully Added 👍🏾"} />}
       <section className={styles.sec_01}>
         <header>
           <h3>Building Management System</h3>

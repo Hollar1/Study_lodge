@@ -9,6 +9,7 @@ function Profile() {
   const navigate = useNavigate();
 
   const [data, setData] = useState(null);
+  console.log(data);
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");
@@ -60,6 +61,10 @@ function Profile() {
     }
   };
 
+  const handleRentRenewal = async () => {
+    console.log("yes");
+  };
+
   return (
     <div>
       <div className={styles.wrapper}>
@@ -80,7 +85,9 @@ function Profile() {
               <h3>Email:</h3>
               <p>
                 {" "}
-                <span style={{ textTransform: "lowercase" }}>{data?.email}</span>
+                <span style={{ textTransform: "lowercase" }}>
+                  {data?.email}
+                </span>
               </p>
             </aside>
             <aside>
@@ -89,7 +96,7 @@ function Profile() {
             </aside>
 
             <div>
-              <button className={styles.edit_btn}>Edit Profile</button>{" "}
+              {/* <button className={styles.edit_btn}>Edit Profile</button>{" "} */}
               <button className={styles.logout_btn} onClick={handleLogout}>
                 Logout
               </button>
@@ -97,62 +104,67 @@ function Profile() {
           </div>
         </section>
 
-        <section className={styles.sec_03}>
-          <table>
-            <thead>
-              <tr>
-                <th colSpan={3}>Payment Details</th>
-              </tr>
-            </thead>
+        {data?.agentFeePayment && (
+          <section className={styles.sec_03}>
+            <table>
+              <thead>
+                <tr>
+                  <th colSpan={3}>Payment Details</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              <tr className={styles.agentFee_sec}>
-                <td>Agent Fee</td>
-                <td>
-                  {data?.agentFeePayment?.amount.toLocaleString("en-NG", {
-                    style: "currency",
-                    currency: "NGN",
-                  })}
-                </td>
-                {data?.agentFeePayment?.status === "success" ? (
-                  <td>Paid</td>
-                ) : (
-                  <td>waiting...</td>
-                )}
-              </tr>
-
-              <tr className={styles.commissionFee_sec}>
-                <td>Caution Fee</td>
-                <td>
-                  {" "}
-                  {data?.agentFeePayment?.room?.caution_fee.toLocaleString(
-                    "en-NG",
-                    {
+              <tbody>
+                <tr className={styles.agentFee_sec}>
+                  <td>Agent Fee</td>
+                  <td>
+                    {data?.agentFeePayment?.amount.toLocaleString("en-NG", {
                       style: "currency",
                       currency: "NGN",
-                    }
+                    })}
+                  </td>
+                  {data?.agentFeePayment?.status === "success" ? (
+                    <td>Paid</td>
+                  ) : (
+                    <td>waiting...</td>
                   )}
-                </td>
-                <td>N/A</td>
-              </tr>
+                </tr>
 
-              <tr className={styles.cautionFee_sec}>
-                <td>Rent Fee</td>
-                <td>
-                  {" "}
-                  {data?.agentFeePayment?.room?.price.toLocaleString("en-NG", {
-                    style: "currency",
-                    currency: "NGN",
-                  })}
-                </td>
+                <tr className={styles.commissionFee_sec}>
+                  <td>Caution Fee</td>
+                  <td>
+                    {" "}
+                    {data?.agentFeePayment?.room?.caution_fee.toLocaleString(
+                      "en-NG",
+                      {
+                        style: "currency",
+                        currency: "NGN",
+                      }
+                    )}
+                  </td>
+                  <td>N/A</td>
+                </tr>
 
-                <td>Waiting...</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+                <tr className={styles.cautionFee_sec}>
+                  <td>Rent Fee</td>
+                  <td>
+                    {" "}
+                    {data?.agentFeePayment?.room?.price.toLocaleString(
+                      "en-NG",
+                      {
+                        style: "currency",
+                        currency: "NGN",
+                      }
+                    )}
+                  </td>
 
-        {data?.roomPricePayment && (
+                  <td>Waiting...</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        )}
+
+        {data?.hostel && (
           <section className={styles.sec_04}>
             <table>
               <thead>
@@ -191,13 +203,17 @@ function Profile() {
           </section>
         )}
 
-        <section className={styles.sec_05}>
-          <Button
-            onClick={handlePayRent}
-            type={"submit"}
-            children={"Pay Rent"}
-          />
-        </section>
+        {data?.agentFeePayment && (
+          <section className={styles.sec_05}>
+            <Button
+              onClick={
+                data?.agentFeePayment ? handleRentRenewal : handlePayRent
+              }
+              type={"submit"}
+              children={data?.agentFeePayment && data?.hostel ? "Renew Rent" : "Pay Rent"}
+            />
+          </section>
+        )}
 
         <section className={styles.sec_06}>
           <header>Emergency Contact Person</header>
@@ -222,13 +238,13 @@ function Profile() {
             <address>F/ab55, iku , ikare akoko, Ondo state, Nigeria.</address>
           </div>
         </section>
-        <button
+        {/* <button
           onClick={() => {
             navigate("/receipt-page");
           }}
         >
           RECEIPT PAGE
-        </button>
+        </button> */}
       </div>
     </div>
   );

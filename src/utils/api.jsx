@@ -17,11 +17,12 @@ export const endpoints = {
   // HOSTELS
   getAllHostel: "/hostels",
   singleHostelDetails: "/hostels/",
+  create_hostel:"/hostels",
+  deleteHostel:"/hostels/",
 
   // ROOMS
   getRoomForHostel: "/rooms/hostel/",
   get_A_room: "/rooms/room/",
-  update_A_room: "/rooms/",
   addRoom: "/rooms",
   get_all_rooms: "/rooms",
   updateRoom:"/rooms/",

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "../updateRoom/updateRoom.module.scss";
-import Spinner from "../../components/spinner/Spinner";
 import axiosInstance from "../../utils/axiosInstance";
 import { endpoints } from "../../utils/api";
 import Modal from "../../components/modal/Modal";
+import Spinner from "../../components/spinner/Spinner";
 function UpdateRoom() {
   const { roomId } = useParams();
   const navigate = useNavigate();
@@ -61,9 +61,8 @@ function UpdateRoom() {
         setTimeout(() => {
           setShowModal(false);
           navigate("/admin-dashboard", { replace: true });
-        }, 3000);
+        }, 4000);
       }
-      console.log(response.data);
     } catch (error) {
       if (error) {
         console.log(error?.response?.data?.message);

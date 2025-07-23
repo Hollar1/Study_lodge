@@ -21,6 +21,7 @@ import AllHostels from "../src/ADMIN/allHostels/AllHostels";
 import AddRoom from "./ADMIN/addRoom/AddRoom";
 import AllRooms from "./ADMIN/allRooms/AllRooms";
 import UpdateRoom from "./ADMIN/updateRoom/UpdateRoom";
+import CreateHostel from "./ADMIN/createHostel/CreateHostel";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -65,6 +66,7 @@ function App() {
           <Route path="/add-room/:hostelId" element={<AddRoom />} />
           <Route path="/all-rooms" element={<AllRooms />} />
           <Route path="/update-room/:roomId" element={<UpdateRoom />} />
+          <Route path="/create-hostel" element={<CreateHostel/>} />
         </Routes>
       </Router>
       {/* ) : ( */}

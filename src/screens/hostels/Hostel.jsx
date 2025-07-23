@@ -22,6 +22,7 @@ function Hostel() {
     setUserToken(userToken);
   }, [userToken]);
   const [hostelDetails, setHostelDetails] = useState(null);
+  console.log(hostelDetails)
   const [rooms, setRooms] = useState([]);
 
   const [images, setImages] = useState([]);
@@ -85,10 +86,10 @@ function Hostel() {
               <FontAwesomeIcon icon={faChevronLeft} />
             </button>
           </div>
-          <article>
-            {/* <header>Accommodation Details</header>
-            <p> {hostelDetails?.hostel_details}</p> */}
-          </article>
+          {/* <article>
+            <header>Accommodation Details</header>
+            <p> {hostelDetails?.hostel_details}</p>
+          </article> */}
         </section>
 
         <section className={styles.sec_02}>

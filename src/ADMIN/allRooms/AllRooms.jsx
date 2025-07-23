@@ -19,26 +19,29 @@ function AllRooms() {
   const [showFailedModal, setShowFailedModal] = useState(false);
   const [allRooms, setAllRooms] = useState([]);
 
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const fetchRooms = async () => {
+    const response = await axiosInstance.get(`${endpoints.get_all_rooms}`);
+    if (response) {
+      setAllRooms(response.data);
+    }
+  };
   useEffect(() => {
-    const fetchRooms = async () => {
-      const response = await axiosInstance.get(`${endpoints.get_all_rooms}`);
-      if (response) {
-        setAllRooms(response.data);
-      }
-    };
     fetchRooms();
-  }, [allRooms]);
+  }, []);
 
   const handleDeleteRoom = async (room_id) => {
     setShowSpinner(true);
     try {
-      console.log("you clicked:", room_id);
       const response = await axiosInstance.delete(
         `${endpoints.deleteRoom}${room_id}`
       );
       if (response) {
         setShowFailedModal(true);
+
         setTimeout(() => {
+          fetchRooms();
           setShowFailedModal(false);
         }, 3000);
       }
@@ -53,6 +56,10 @@ function AllRooms() {
     navigate(`/update-room/${room_id}`);
   };
 
+  const searchRoom = allRooms.filter((room) =>
+    room.hostel?.hostel_name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className={styles.parent_wrapper}>
       {showSpinner && <Spinner />}
@@ -61,7 +68,12 @@ function AllRooms() {
         <section className={styles.sec_01}>
           <h3>Room Management</h3>
           <section className={styles.sec_02}>
-            <input type="text" placeholder="Search for room or hostel" />
+            <input
+              type="text"
+              placeholder="Search for hostel"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
             <FontAwesomeIcon icon={faSearch} />
           </section>
         </section>
@@ -81,7 +93,7 @@ function AllRooms() {
             </thead>
 
             <tbody>
-              {allRooms.map((room) => (
+              {searchRoom.map((room) => (
                 <tr key={room._id}>
                   <td>{room?.hostel?.hostel_name}</td>
                   <td>{room?.unit}</td>

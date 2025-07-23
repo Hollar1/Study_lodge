@@ -5,19 +5,23 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import axiosInstance from "../../utils/axiosInstance";
 import { endpoints } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
+import FailedModal from "../../components/failedModal/FailedModal";
+import Spinner from "../../components/spinner/Spinner";
 
 function AllHostels() {
   const navigate = useNavigate();
   const [hostels, setHostels] = useState([]);
 
+  const [showSpinner, setShowSpinner] = useState(false);
+  const [showFailedModal, setShowFailedModal] = useState(false);
+
+  const fetchHostels = async () => {
+    const response = await axiosInstance.get(`${endpoints.getAllHostel}`);
+    if (response) {
+      setHostels(response.data);
+    }
+  };
   useEffect(() => {
-    const fetchHostels = async () => {
-      const response = await axiosInstance.get(`${endpoints.getAllHostel}`);
-      if (response) {
-        console.log(response.data);
-        setHostels(response.data);
-      }
-    };
     fetchHostels();
   }, []);
 
@@ -25,8 +29,32 @@ function AllHostels() {
     navigate(`/add-room/${hostel_id}`);
   };
 
+  const handleDeleteHostel = async (hostel_id) => {
+    setShowSpinner(true);
+    try {
+      const response = await axiosInstance.delete(
+        `${endpoints.deleteHostel}${hostel_id}`
+      );
+      if (response) {
+        setShowFailedModal(true);
+        setTimeout(() => {
+          setShowFailedModal(false);
+          fetchHostels();
+        }, 3000);
+      }
+    } catch (error) {
+      if (error) {
+        console.log(error.response?.data?.message);
+      }
+    } finally {
+      setShowSpinner(false);
+    }
+  };
+
   return (
     <div className={styles.parent_wrapper}>
+      {showSpinner && <Spinner />}
+      {showFailedModal && <FailedModal body={"Hostel Deleted Successfully!"} />}
       <div>
         <section className={styles.sec_01}>
           <header>All Hostels</header>
@@ -71,7 +99,13 @@ function AllHostels() {
                   <td>Send Email</td>
                   <td>Send SMS</td>
                   <td>Close</td>
-                  <td>Delete</td>
+                  <td
+                    onClick={() => {
+                      handleDeleteHostel(hostel.id);
+                    }}
+                  >
+                    Delete
+                  </td>
                 </tr>
               ))}
             </tbody>
