@@ -22,7 +22,7 @@ function Hostel() {
     setUserToken(userToken);
   }, [userToken]);
   const [hostelDetails, setHostelDetails] = useState(null);
-  console.log(hostelDetails)
+  console.log(hostelDetails);
   const [rooms, setRooms] = useState([]);
 
   const [images, setImages] = useState([]);
@@ -102,12 +102,18 @@ function Hostel() {
                   <b>{room.room_number}</b>{" "}
                   <i
                     className={
-                      room.status === "booked"
+                      room.status === "rented"
+                        ? styles.occupied
+                        : room.status === "booked"
                         ? styles.booked
                         : styles.available
                     }
                   >
-                    {room.status}
+                    {room.status === "rented"
+                      ? "Occupied"
+                      : room.status === "booked"
+                      ? "Booked"
+                      : "Available"}
                   </i>
                 </div>
                 <div>

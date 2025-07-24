@@ -39,7 +39,7 @@
       justify-content: center;
       align-items: center;
       color: white;
-      &:active{
+      &:active {
         background-color: #191970;
       }
     }
@@ -111,13 +111,20 @@
         font-size: 15px;
         font-weight: 500;
       }
+      
       .available {
         font-size: 12.5px;
         letter-spacing: 0.2px;
         color: green;
       }
+
       .booked {
-        color: rgb(192, 104, 104);
+        color: rgb(141, 3, 3);
+        font-size: 12.5px;
+        letter-spacing: 0.2px;
+      }
+      .occupied {
+        color: blue;
         font-size: 12.5px;
         letter-spacing: 0.2px;
       }
