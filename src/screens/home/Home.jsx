@@ -15,6 +15,7 @@ import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate()
   const [readMore, setReadMore] = useState(false);
   return (
     <div>
@@ -181,7 +182,7 @@ function Home() {
               possimus, dolorem, alias, error fuga.
             </span>
           </aside>
-          <button>See All Reviews</button>
+          <button onClick={()=>{navigate("/review")}}>See All Reviews</button>
         </section>
 
         <section className={styles.sec_07}>

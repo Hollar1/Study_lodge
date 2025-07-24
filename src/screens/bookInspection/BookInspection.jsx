@@ -263,7 +263,9 @@ function BookInspection() {
               children={"Pay Agent Fee"}
             />
           </section>
+   
         </form>
+      
       </div>
     </div>
   );

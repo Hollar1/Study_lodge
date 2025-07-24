@@ -22,6 +22,7 @@ import AddRoom from "./ADMIN/addRoom/AddRoom";
 import AllRooms from "./ADMIN/allRooms/AllRooms";
 import UpdateRoom from "./ADMIN/updateRoom/UpdateRoom";
 import CreateHostel from "./ADMIN/createHostel/CreateHostel";
+import Review from "./screens/review/Review";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -57,6 +58,7 @@ function App() {
           <Route path="/terms-conditions" element={<Terms_conditions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/help-support" element={<HelpSupport />} />
+          <Route path="/review" element={<Review/>} />
           <Route
             path="/book-inspection/:room_id"
             element={<BookInspection />}

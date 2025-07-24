@@ -27,6 +27,8 @@ function receiptPage() {
     setInspection_time(timeSlice);
   }, [date_time_replace]);
 
+
+  
   useEffect(() => {
     const fetchUserDetails = async () => {
       const response = await axiosInstance.get(
@@ -41,6 +43,18 @@ function receiptPage() {
     };
     fetchUserDetails();
   }, [userId]);
+
+
+
+
+
+
+
+
+
+
+
+  
 
   const handleDownload = async () => {
     const element = printRef.current;
@@ -104,7 +118,6 @@ function receiptPage() {
 
   return (
     <div className={styles.parent_wrapper}>
-      {/* <button onClick={()=>{handleUpdateRoomStatus}}>update room</button> */}
       {agentFeePayment && roomFeePayment ? (
         <div>Room Paid</div>
       ) : agentFeePayment ? (

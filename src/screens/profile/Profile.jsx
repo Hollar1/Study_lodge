@@ -9,7 +9,8 @@ function Profile() {
   const navigate = useNavigate();
 
   const [data, setData] = useState(null);
-  console.log(data);
+  console.log(data)
+
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");
@@ -46,7 +47,7 @@ function Profile() {
         booking_id: data?.agentFeePayment?.booking?._id,
         callback_url: `${origin}/receipt-page`,
       };
-      console.log(payload);
+      // console.log(payload);
       const response = await axiosInstance.post(
         `${endpoints.roomFeePayment}`,
         payload
@@ -207,7 +208,7 @@ function Profile() {
           <section className={styles.sec_05}>
             <Button
               onClick={
-                data?.agentFeePayment ? handleRentRenewal : handlePayRent
+                data?.agentFeePayment && data.hostel ? handleRentRenewal : handlePayRent
               }
               type={"submit"}
               children={data?.agentFeePayment && data?.hostel ? "Renew Rent" : "Pay Rent"}

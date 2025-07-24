@@ -25,6 +25,7 @@ function AllRooms() {
     const response = await axiosInstance.get(`${endpoints.get_all_rooms}`);
     if (response) {
       setAllRooms(response.data);
+      console.log(response.data)
     }
   };
   useEffect(() => {
