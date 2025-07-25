@@ -11,7 +11,7 @@ import Spinner from "../../components/spinner/Spinner";
 function BookInspection() {
   const [showSpinner, setShowSpinner] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { room_id } = useParams();
 
@@ -265,9 +265,8 @@ function BookInspection() {
               children={"Pay Agent Fee"}
             />
           </section>
-   
         </form>
-      <button onClick={()=>navigate("/receipt-page")}>Receipt Page</button>
+        <button onClick={() => navigate("/receipt-page")}>Receipt Page</button>
       </div>
     </div>
   );

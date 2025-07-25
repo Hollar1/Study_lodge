@@ -24,6 +24,7 @@ function Hostel() {
   const [hostelDetails, setHostelDetails] = useState(null);
   console.log(hostelDetails);
   const [rooms, setRooms] = useState([]);
+  console.log(rooms);
 
   const [images, setImages] = useState([]);
 
@@ -154,11 +155,13 @@ function Hostel() {
 
                   <button
                     className={
-                      room.status === "booked"
+                      room.status === "booked" || room.status==="rented"
                         ? styles.roomBooked
                         : styles.roomAvailable
                     }
-                    disabled={room.status === "booked" ? true : null}
+                    disabled={
+                      room.status === "rented" || room.status === "booked"
+                    }
                     onClick={() => {
                       navigateToBooking(room._id);
                     }}

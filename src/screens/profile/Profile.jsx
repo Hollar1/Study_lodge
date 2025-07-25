@@ -9,8 +9,7 @@ function Profile() {
   const navigate = useNavigate();
 
   const [data, setData] = useState(null);
-  console.log(data)
-
+  console.log(data?.rentDetails);
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");
@@ -97,9 +96,11 @@ function Profile() {
             </aside>
 
             <div>
-              {/* <button className={styles.edit_btn}>Edit Profile</button>{" "} */}
-              <button className={styles.logout_btn} onClick={handleLogout}>
-                Logout
+              <button
+                className={userId ? styles.logout_btn : styles.login_btn}
+                onClick={handleLogout}
+              >
+                {userId ? "Logout" : "Login"}
               </button>
             </div>
           </div>
@@ -123,11 +124,14 @@ function Profile() {
                       currency: "NGN",
                     })}
                   </td>
-                  {data?.agentFeePayment?.status === "success" ? (
-                    <td>Paid</td>
-                  ) : (
-                    <td>waiting...</td>
-                  )}
+
+                  <td
+                    className={
+                      data?.agentFeePayment ? styles.paid : styles.waiting
+                    }
+                  >
+                    {data?.agentFeePayment ? "Paid" : "waiting"}
+                  </td>
                 </tr>
 
                 <tr className={styles.commissionFee_sec}>
@@ -158,7 +162,14 @@ function Profile() {
                     )}
                   </td>
 
-                  <td>Waiting...</td>
+                  <td
+                    className={
+                      data?.roomPricePayment ? styles.paid : styles.waiting
+                    }
+                  >
+                    {" "}
+                    {data?.roomPricePayment ? "paid" : "Waiting..."}{" "}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -187,17 +198,31 @@ function Profile() {
                   <td>Apartment</td>
                   <td>{data?.agentFeePayment?.room?.room_number}</td>
                 </tr>
-                <tr>
-                  <td>Rent Length</td>
-                  <td>Scholar's Hostel</td>
-                </tr>
+
                 <tr>
                   <td>Start Date</td>
-                  <td>Scholar's Hostel</td>
+
+                  <td>
+                    {data?.rentDetails?.rentStartDate
+                      ? new Date(data.rentDetails.rentDueDate)
+                          .toISOString()
+                          .split("T")[0]
+                      : "N/A"}
+                  </td>
                 </tr>
                 <tr>
                   <td>Due Date</td>
-                  <td>Scholar's Hostel</td>
+                  <td>
+                    {data?.rentDetails?.rentDueDate
+                      ? new Date(data.rentDetails.rentDueDate)
+                          .toISOString()
+                          .split("T")[0]
+                      : "N/A"}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Days Left</td>
+                  <td>{data?.rentDetails?.countdown - 10} Days</td>
                 </tr>
               </tbody>
             </table>
@@ -208,10 +233,16 @@ function Profile() {
           <section className={styles.sec_05}>
             <Button
               onClick={
-                data?.agentFeePayment && data.hostel ? handleRentRenewal : handlePayRent
+                data?.agentFeePayment && data.hostel
+                  ? handleRentRenewal
+                  : handlePayRent
               }
               type={"submit"}
-              children={data?.agentFeePayment && data?.hostel ? "Renew Rent" : "Pay Rent"}
+              children={
+                data?.agentFeePayment && data?.hostel
+                  ? "Renew Rent"
+                  : "Pay Rent"
+              }
             />
           </section>
         )}

@@ -23,6 +23,8 @@ import AllRooms from "./ADMIN/allRooms/AllRooms";
 import UpdateRoom from "./ADMIN/updateRoom/UpdateRoom";
 import CreateHostel from "./ADMIN/createHostel/CreateHostel";
 import Review from "./screens/review/Review";
+import AdminSignUp from "./ADMIN/adminSignUp/AdminSignUp";
+import AllUsers from "./ADMIN/allUsers/AllUsers";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -58,7 +60,7 @@ function App() {
           <Route path="/terms-conditions" element={<Terms_conditions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/help-support" element={<HelpSupport />} />
-          <Route path="/review" element={<Review/>} />
+          <Route path="/review" element={<Review />} />
           <Route
             path="/book-inspection/:room_id"
             element={<BookInspection />}
@@ -68,7 +70,9 @@ function App() {
           <Route path="/add-room/:hostelId" element={<AddRoom />} />
           <Route path="/all-rooms" element={<AllRooms />} />
           <Route path="/update-room/:roomId" element={<UpdateRoom />} />
-          <Route path="/create-hostel" element={<CreateHostel/>} />
+          <Route path="/create-hostel" element={<CreateHostel />} />
+          <Route path="/admin-sign-up" element={<AdminSignUp />} />
+          <Route path="/all-users" element={<AllUsers/>} />
         </Routes>
       </Router>
       {/* ) : ( */}

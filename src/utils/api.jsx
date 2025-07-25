@@ -3,13 +3,13 @@ export const baseUrl = "https://study-lodge-api.onrender.com/api";
 export const endpoints = {
   signUp: "/auth/signup",
   signUp_otp: "/auth/verify-email-otp",
-  adminSignUp: "/auth/admin/signup",
+  createAdmin: "/auth/admin/signup",
   login: "/auth/login",
   forgotPass_email: "/auth/forgot-password",
   resetPass: "/auth/reset-password",
 
   // USER
-  getAllUser: "/user/all",
+  getAllUsers: "/user/all",
   get_A_UserProfile: "/user/",
   deleteUserAccount: "/user/",
   updateUserProfile: "/user/profile",
@@ -17,16 +17,16 @@ export const endpoints = {
   // HOSTELS
   getAllHostel: "/hostels",
   singleHostelDetails: "/hostels/",
-  create_hostel:"/hostels",
-  deleteHostel:"/hostels/",
+  create_hostel: "/hostels",
+  deleteHostel: "/hostels/",
 
   // ROOMS
   getRoomForHostel: "/rooms/hostel/",
   get_A_room: "/rooms/room/",
   addRoom: "/rooms",
   get_all_rooms: "/rooms",
-  updateRoom:"/rooms/",
-  deleteRoom:"/rooms/",
+  updateRoom: "/rooms/",
+  deleteRoom: "/rooms/",
 
   // BOOKINGS
   createBooking: "/bookings",

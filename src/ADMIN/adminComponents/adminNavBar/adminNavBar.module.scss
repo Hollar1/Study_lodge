@@ -22,3 +22,22 @@
     }
   }
 }
+.sec_02 {
+  display: flex;
+  top: 50px;
+  position: fixed;
+  flex-direction: column;
+  width: 200px;
+  border: solid 1.5px;
+  left: 1px;
+  button {
+    height: 34px;
+    font-size: 16px;
+    background-color: rgb(246, 238, 228);
+    border: solid 0.5px;
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(242, 224, 201);
+    }
+  }
+}
