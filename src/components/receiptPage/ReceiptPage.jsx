@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { endpoints } from "../../utils/api";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
@@ -6,15 +6,15 @@ import styles from "../receiptPage/receiptPage.module.scss";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function receiptPage() {
   const printRef = useRef();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const [agentFeePayment, setAgentFeePayment] = useState(null);
-  // console.log(agentFeePayment)
   const [roomFeePayment, setRoomFeePayment] = useState(null);
+
 
   const [inspection_date, setInspection_date] = useState(null);
   const [inspection_time, setInspection_time] = useState(null);
@@ -27,34 +27,36 @@ function receiptPage() {
     setInspection_time(timeSlice);
   }, [date_time_replace]);
 
-
-  
   useEffect(() => {
     const fetchUserDetails = async () => {
       const response = await axiosInstance.get(
         `${endpoints.get_A_UserProfile}${userId}`
       );
       if (response) {
-        console.log(response.data)
+        console.log(response.data);
         setAgentFeePayment(response.data?.agentFeePayment);
         setRoomFeePayment(response.data?.hostel);
-
       }
     };
     fetchUserDetails();
   }, [userId]);
 
+  const [searchParams] = useSearchParams();
+  console.log("searchParams:", searchParams);
 
-
-
-
-
-
-
-
-
-
-  
+  useEffect(() => {
+    const reference = searchParams.get("reference");
+    console.log("reference", reference);
+    const fetchPaymentDetails = async () => {
+      const response = await axiosInstance.get(`${endpoints.verifyPayment}`, {
+        params: {
+          reference: reference,
+        },
+      });
+      console.log(response);
+    };
+    fetchPaymentDetails();
+  }, [searchParams]);
 
   const handleDownload = async () => {
     const element = printRef.current;
@@ -80,7 +82,7 @@ function receiptPage() {
   const handleUpdateRoomStatus = async () => {
     try {
       const roomId = agentFeePayment?.room?._id;
-      console.log(roomId)
+      console.log(roomId);
 
       const payload = {
         room_number: agentFeePayment?.room?.room_number,
@@ -93,8 +95,6 @@ function receiptPage() {
         hostel: agentFeePayment?.hostel?._id,
       };
 
-
-
       const response = await axiosInstance.patch(
         `${endpoints.updateRoom}${roomId}`,
         payload
@@ -103,7 +103,7 @@ function receiptPage() {
         console.log(response.data);
       }
     } catch (error) {
-      console.log("this is the error",error.response?.data?.message)
+      console.log("this is the error", error.response?.data?.message);
     }
   };
 
@@ -112,9 +112,6 @@ function receiptPage() {
       handleUpdateRoomStatus();
     }
   }, [agentFeePayment]);
-
-
-
 
   return (
     <div className={styles.parent_wrapper}>
@@ -174,7 +171,6 @@ function receiptPage() {
                   <p>Apartment Booked:</p>
                   <span> {agentFeePayment?.room?.room_number}</span>
                 </div>
-
                 <div>
                   <p>Unit Type:</p>
                   <span>{agentFeePayment?.room?.unit}</span>
@@ -211,7 +207,9 @@ function receiptPage() {
           </div>
         </div>
       ) : (
-        <div>Payment Unsuccessful</div>
+        <section className={styles.sec_05}>
+          <div>Loading...</div>
+        </section>
       )}
     </div>
   );

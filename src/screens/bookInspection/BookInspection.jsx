@@ -11,6 +11,8 @@ import Spinner from "../../components/spinner/Spinner";
 function BookInspection() {
   const [showSpinner, setShowSpinner] = useState(false);
 
+  const navigate = useNavigate()
+
   const { room_id } = useParams();
 
   const { origin } = window.location;
@@ -265,7 +267,7 @@ function BookInspection() {
           </section>
    
         </form>
-      
+      <button onClick={()=>navigate("/receipt-page")}>Receipt Page</button>
       </div>
     </div>
   );

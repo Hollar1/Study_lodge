@@ -12,6 +12,7 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { all } from "axios";
 
 function AllRooms() {
   const navigate = useNavigate();
@@ -25,7 +26,6 @@ function AllRooms() {
     const response = await axiosInstance.get(`${endpoints.get_all_rooms}`);
     if (response) {
       setAllRooms(response.data);
-      console.log(response.data)
     }
   };
   useEffect(() => {
@@ -60,6 +60,12 @@ function AllRooms() {
   const searchRoom = allRooms.filter((room) =>
     room.hostel?.hostel_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const totalRooms = allRooms.length;
+  const totalOccupied = allRooms.filter((room) => room.status === "rented");
+  const totalBooked = allRooms.filter((room) => room.status === "booked");
+
+  const totalBooked_totalOccupied = totalBooked.length + totalOccupied.length;
+  const totalRemaining = totalRooms - totalBooked_totalOccupied;
 
   return (
     <div className={styles.parent_wrapper}>
@@ -68,14 +74,21 @@ function AllRooms() {
       <div>
         <section className={styles.sec_01}>
           <h3>Room Management</h3>
+
           <section className={styles.sec_02}>
-            <input
-              type="text"
-              placeholder="Search for hostel"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <FontAwesomeIcon icon={faSearch} />
+            <article>
+              <input
+                type="text"
+                placeholder="Search for hostel"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <FontAwesomeIcon icon={faSearch} />
+            </article>
+            <i> Total Rooms: {allRooms?.length}</i>
+            <i>Total Booked: {totalBooked?.length}</i>
+            <i>Total Occupied: {totalOccupied?.length}</i>
+            <i>Total Remaining: {totalRemaining}</i>
           </section>
         </section>
         <section className={styles.sec_03}>

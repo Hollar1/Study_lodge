@@ -20,24 +20,40 @@
 
 .sec_02 {
   margin-top: 15px;
-  width: 380px;
-  height: 35px;
-  border: solid gray 2px;
-  border-radius: 5px;
   display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
   align-items: center;
-  padding: 0% 5px;
-  input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    font-size: 18px;
-    &::placeholder {
-      font-size: 15px;
-      font-style: italic;
-      letter-spacing: 0.5px;
+  article {
+    width: 380px;
+    height: 35px;
+    border: solid gray 2px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0% 5px;
+
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 18px;
+      &::placeholder {
+        font-size: 15px;
+        font-style: italic;
+        letter-spacing: 0.5px;
+      }
     }
+  }
+  i {
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    padding: 3px 15px;
+    background-color: #191970;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
   }
 }
 
@@ -122,8 +138,8 @@
   background-color: rgb(242, 238, 229);
 }
 .booked {
-  background-color: rgb(233, 244, 233);
+  color: rgb(111, 3, 3);
 }
 .occupied {
-  color: yellow;
+  color: blue;
 }
