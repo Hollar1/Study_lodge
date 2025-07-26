@@ -212,7 +212,7 @@ function receiptPage() {
                 Room rent due date and other details will be available in your
                 account profile.
               </p>
-              <p> Kind regards, Study Lodge Ltd.</p>
+              <p> Kind regards, <span>Study Lodge Ltd.</span></p>
             </section>
           </div>
           <div className={styles.button_div}>
