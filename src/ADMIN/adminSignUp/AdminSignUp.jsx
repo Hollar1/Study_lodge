@@ -7,13 +7,18 @@ import Button from "../../components/button/Button";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import Modal from "../../components/modal/Modal";
 import Spinner from "../../components/spinner/Spinner";
+import FailedModal from "../../components/failedModal/FailedModal";
 import { baseUrl, endpoints } from "../../utils/api";
+
 import axios from "axios";
 
 function AdminSignUp() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
+  const [showFailedModal, setFailedModal] = useState(null);
+
+  const sliceError = showFailedModal?.slice(12, showFailedModal.length - 41);
 
   const [signUpDetails, setSignUpDetails] = useState({
     first_name: "",
@@ -58,6 +63,10 @@ function AdminSignUp() {
     } catch (error) {
       if (error) {
         console.log(error);
+        setFailedModal(error?.response?.data?.message);
+        // setTimeout(() => {
+        //   setFailedModal(null);
+        // }, 4000);
       }
     } finally {
       setShowSpinner(false);
@@ -67,6 +76,7 @@ function AdminSignUp() {
     <div>
       {showSpinner && <Spinner />}
       {showModal && <Modal body={"Admin Account Created Successfully 👍🏾"} />}
+      {showFailedModal && <FailedModal body={sliceError} />}
       <div className={styles.wrapper}>
         <section className={styles.sec_01}>
           <img src={company_logo} alt="" />

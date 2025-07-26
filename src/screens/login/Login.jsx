@@ -14,8 +14,11 @@ import FailedModal from "../../components/failedModal/FailedModal";
 function Login() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-  const [failedModal, setFailedModal] = useState(false);
+  const [showFailedModal, setShowFailedModal] = useState(null);
   const [showSpinner, setShowSpinner] = useState(false);
+
+  const sliceError = showFailedModal?.slice(12, showFailedModal.length - 41);
+
   const [loginDetails, setLoginDetails] = useState({
     email: "",
     password: "",
@@ -52,11 +55,18 @@ function Login() {
         setTimeout(() => {
           setShowModal(false);
           navigate(
-            response.data.user.role === "admin" ? "/admin-dashboard" : "/home"
+            response.data.user.role === "admin" ? "/admin-dashboard" : "/"
           );
         }, 4000);
       }
     } catch (error) {
+      if (error) {
+        console.log(error);
+        setShowFailedModal(error?.response?.data?.message);
+        setTimeout(() => {
+          setShowFailedModal(null);
+        }, 4000);
+      }
     } finally {
       setShowSpinner(false);
     }
@@ -72,7 +82,7 @@ function Login() {
             your bookings with ease.`}
         />
       )}
-      {failedModal && <FailedModal />}
+      {showFailedModal && <FailedModal body={sliceError} />}
       {/* <NavBar/> */}
       <div className={styles.wrapper}>
         <section className={styles.sec_01}>
