@@ -44,7 +44,7 @@ function Profile() {
         room_id: data?.agentFeePayment?.room?._id,
         hostel_id: data?.agentFeePayment?.hostel?._id,
         booking_id: data?.agentFeePayment?.booking?._id,
-        callback_url: `${origin}/receipt-page`,
+        callback_url: `${origin}/rent-receipt`,
       };
       // console.log(payload);
       const response = await axiosInstance.post(
@@ -105,6 +105,7 @@ function Profile() {
             </div>
           </div>
         </section>
+        <button onClick={()=>{navigate("/rent-receipt")}}>payment receipt</button>
 
         {data?.agentFeePayment && (
           <section className={styles.sec_03}>

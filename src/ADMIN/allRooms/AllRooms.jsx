@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FailedModal from "../../components/failedModal/FailedModal";
 import Spinner from "../../components/spinner/Spinner";
 import {
-  faPen,
   faPenToSquare,
   faSearch,
   faTrash,
@@ -19,6 +18,7 @@ function AllRooms() {
   const [showSpinner, setShowSpinner] = useState(false);
   const [showFailedModal, setShowFailedModal] = useState(false);
   const [allRooms, setAllRooms] = useState([]);
+  console.log(allRooms)
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -40,9 +40,8 @@ function AllRooms() {
       );
       if (response) {
         setShowFailedModal(true);
-
+        fetchRooms();
         setTimeout(() => {
-          fetchRooms();
           setShowFailedModal(false);
         }, 3000);
       }

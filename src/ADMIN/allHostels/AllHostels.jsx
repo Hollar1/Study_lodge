@@ -51,6 +51,10 @@ function AllHostels() {
     }
   };
 
+  const handleNavigateToUpdateHostel = (hostel_id) => {
+    navigate(`/update-hostel/${hostel_id}`);
+  };
+
   return (
     <div className={styles.parent_wrapper}>
       {showSpinner && <Spinner />}
@@ -95,7 +99,13 @@ function AllHostels() {
                   >
                     Add Room
                   </td>
-                  <td>Update</td>
+                  <td
+                    onClick={() => {
+                      handleNavigateToUpdateHostel(hostel.id);
+                    }}
+                  >
+                    Update
+                  </td>
                   <td>Send Email</td>
                   <td>Send SMS</td>
                   <td>Close</td>

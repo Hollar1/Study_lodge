@@ -22,9 +22,10 @@ function Hostel() {
     setUserToken(userToken);
   }, [userToken]);
   const [hostelDetails, setHostelDetails] = useState(null);
-  console.log(hostelDetails);
+  // console.log(hostelDetails);
   const [rooms, setRooms] = useState([]);
-  console.log(rooms);
+  console.log(rooms)
+
 
   const [images, setImages] = useState([]);
 
@@ -70,6 +71,14 @@ function Hostel() {
   const navigateToBooking = (room_id) => {
     navigate(userToken ? `/book-inspection/${room_id}` : "/login");
   };
+
+
+
+
+
+
+
+
 
   return (
     <div>

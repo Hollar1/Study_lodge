@@ -8,7 +8,7 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-function receiptPage() {
+function RentReceipt() {
   const printRef = useRef();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
@@ -140,13 +140,10 @@ function receiptPage() {
           <section className={styles.sec_01}>
             <header>
               <IoMdCheckmarkCircleOutline size={40} color="rgb(72,209,204)" />
-              <h3>Thanks you for your payment!</h3>
-              <p>
-                Your room inspection booking has been successfully completed.
-              </p>
+              <h3>Thank you for your payment!</h3>
+              <p>Your rent payment has been successfully completed.</p>
             </header>
           </section>
-
           <section className={styles.sec_02}>
             <header>
               <h3>Payment Summary</h3>
@@ -155,20 +152,18 @@ function receiptPage() {
               <div>
                 <p>Payment Status:</p>
                 <span className={styles.paymentStatus}>
-                  {agentFeePayment?.status}
+                  {fullData?.roomPricePayment?.status}
                 </span>
               </div>
               <div>
                 <p>Payment For:</p>
-                <span className={styles.payment_purpose}>
-                  {agentFeePayment?.payment_type}
-                </span>
+                <span className={styles.payment_purpose}>ROOM_RENT</span>
               </div>
 
               <div>
                 <p>Amount:</p>
                 <span className={styles.agentFee_amount}>
-                  {agentFeePayment?.amount?.toLocaleString("en-NG", {
+                  {fullData?.roomPricePayment?.amount?.toLocaleString("en-NG", {
                     style: "currency",
                     currency: "NGN",
                   })}
@@ -179,7 +174,7 @@ function receiptPage() {
 
           <section className={styles.sec_03}>
             <header>
-              <h3>Booking Information</h3>
+              <h3>Rent Information</h3>
             </header>
             <article className={styles.article_02}>
               <div>
@@ -187,7 +182,7 @@ function receiptPage() {
                 <span>{agentFeePayment?.hostel?.hostel_name}</span>
               </div>
               <div>
-                <p>Apartment Booked:</p>
+                <p>Rented Apartment:</p>
                 <span> {agentFeePayment?.room?.room_number}</span>
               </div>
               <div>
@@ -195,33 +190,36 @@ function receiptPage() {
                 <span>{agentFeePayment?.room?.unit}</span>
               </div>
               <hr />
-              <aside className={styles.article_03}>
-                <header>Inspection Date & TIme</header>
-                <div>
-                  <p>Date:</p>
-                  <span>{inspection_date}</span>
-                </div>
-                <div>
-                  <p>Time:</p>
-                  <span>{inspection_time}</span>
-                </div>
-              </aside>
-              <hr />
               <aside className={styles.article_04}>
                 <header>Hostel Address: </header>
                 <address>{agentFeePayment?.hostel?.address}</address>
               </aside>
+              <hr />
             </article>
           </section>
-
-          <section className={styles.sec_04}>
+          <section className={styles.sec_06}>
+            <header>Important Notice!</header>
             <p>
-              Please ensure to arrive on time for your inspection. If you have
-              any questions or need to make changes, feel free to contact our
-              support team. Thanks 🙏
+              {" "}
+              Dear{" "}
+              <b>
+                {fullData?.first_name} {fullData?.last_name}
+              </b>
+              , Thank you for your payment. The room is now ready. Please
+              contact the same agent who showed you the room to collect the key.
+            </p>
+            <p>
+              {" "}
+              Room rent due date and other details will be available in your
+              account profile.
+            </p>
+            <p>
+              {" "}
+              Kind regards, <span>Study Lodge Ltd.</span>
             </p>
           </section>
         </div>
+
         <div className={styles.button_div}>
           <button onClick={handleDownload}>Download Receipt</button>
         </div>
@@ -230,4 +228,4 @@ function receiptPage() {
   );
 }
 
-export default receiptPage;
+export default RentReceipt;

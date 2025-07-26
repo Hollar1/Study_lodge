@@ -79,7 +79,6 @@ function BookInspection() {
       if (response) {
         const booking_id = response.data._id;
         agentFeePayment(booking_id);
-
         setTimeout(() => {
           setShowSpinner(false);
         }, 4500);

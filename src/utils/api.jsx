@@ -18,6 +18,7 @@ export const endpoints = {
   getAllHostel: "/hostels",
   singleHostelDetails: "/hostels/",
   create_hostel: "/hostels",
+  updateHostel: "/hostels/",
   deleteHostel: "/hostels/",
 
   // ROOMS
@@ -35,4 +36,5 @@ export const endpoints = {
   agentFeePayment: "/payments/agent-fee/initiate",
   roomFeePayment: "/payments/room-price/initiate",
   verifyPayment: "/payments/verify",
+  getAllTenants: "/payments/tenants",
 };

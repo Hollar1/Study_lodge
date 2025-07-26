@@ -25,6 +25,8 @@ import CreateHostel from "./ADMIN/createHostel/CreateHostel";
 import Review from "./screens/review/Review";
 import AdminSignUp from "./ADMIN/adminSignUp/AdminSignUp";
 import AllUsers from "./ADMIN/allUsers/AllUsers";
+import UpdateHostel from "./ADMIN/updateHostel/UpdateHostel";
+import RentReceipt from "./components/rentReceipt/RentReceipt";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -54,6 +56,7 @@ function App() {
           <Route path="/forgot-pass-otp" element={<ForgotPass_otp />} />
           <Route path="/hostel/:hostel_id" element={<Hostel />} />
           <Route path="/receipt-page" element={<ReceiptPage />} />
+           <Route path="/rent-receipt" element={<RentReceipt />} />
           <Route path="/profile/:user_id" element={<Profile />} />
           <Route path="/about" element={<About />} />
           <Route path="/job-vacancy" element={<JobVacancy />} />
@@ -61,6 +64,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/help-support" element={<HelpSupport />} />
           <Route path="/review" element={<Review />} />
+         
           <Route
             path="/book-inspection/:room_id"
             element={<BookInspection />}
@@ -72,7 +76,8 @@ function App() {
           <Route path="/update-room/:roomId" element={<UpdateRoom />} />
           <Route path="/create-hostel" element={<CreateHostel />} />
           <Route path="/admin-sign-up" element={<AdminSignUp />} />
-          <Route path="/all-users" element={<AllUsers/>} />
+          <Route path="/all-users" element={<AllUsers />} />
+          <Route path="/update-hostel/:hostel_ID" element={<UpdateHostel />} />
         </Routes>
       </Router>
       {/* ) : ( */}

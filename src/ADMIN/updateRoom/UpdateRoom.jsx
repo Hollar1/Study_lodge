@@ -83,6 +83,14 @@ function UpdateRoom() {
     fetchRoom();
   }, [roomId]);
 
+
+
+
+
+
+
+
+
   useEffect(() => {
     const fetchHostel = async () => {
       const response = await axiosInstance.get(
@@ -224,7 +232,7 @@ function UpdateRoom() {
               </label>
             </div>
 
-            <button type="submit">Add Room To Building</button>
+            <button type="submit">Update Room</button>
           </main>
         </form>
       </section>
