@@ -42,10 +42,10 @@ function AdminSignUp() {
     setShowSpinner(true);
     try {
       const fd = new FormData();
-      fd.append("first_name", signUpDetails.first_name);
-      fd.append("last_name", signUpDetails.last_name);
-      fd.append("gender", signUpDetails.gender);
-      fd.append("email", signUpDetails.email);
+      fd.append("first_name", signUpDetails.first_name.toLowerCase());
+      fd.append("last_name", signUpDetails.last_name.toLowerCase());
+      fd.append("gender", signUpDetails.gender.toLowerCase());
+      fd.append("email", signUpDetails.email.toLowerCase());
       fd.append("phone_number", signUpDetails.phone_number);
       fd.append("password", signUpDetails.password);
       const response = await axios.post(
