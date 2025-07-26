@@ -7,6 +7,7 @@ import { useRef } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Spinner from "../../components/spinner/Spinner";
 
 function receiptPage() {
   const printRef = useRef();
@@ -16,8 +17,6 @@ function receiptPage() {
   const [roomFeePayment, setRoomFeePayment] = useState(null);
   const [loading, setLoading] = useState(true);
   const [fullData, setFullData] = useState(null);
-  // console.log(fullData)
-
 
   const [inspection_date, setInspection_date] = useState(null);
   const [inspection_time, setInspection_time] = useState(null);
@@ -43,10 +42,12 @@ function receiptPage() {
     fetchUserDetails();
   }, [userId]);
 
-  setTimeout(() => {
-    fetchUserDetails();
-    setLoading(false);
-  }, 2000);
+  useEffect(() => {
+    setTimeout(() => {
+      fetchUserDetails();
+      setLoading(false);
+    }, 5000);
+  });
 
   const [searchParams] = useSearchParams();
 
@@ -120,13 +121,14 @@ function receiptPage() {
     <div className={styles.parent_wrapper}>
       {loading && (
         <section className={styles.sec_05}>
-          <div>Loading...</div>
+          <div>Generating Receipt....</div>
           <p>
             Please make sure to download your receipt, it may be required to
             present as proof of payment.
           </p>
         </section>
       )}
+
       {agentFeePayment && roomFeePayment ? (
         <div>
           <div ref={printRef} className={styles.agentFee_wrapper}>
@@ -156,10 +158,13 @@ function receiptPage() {
                 <div>
                   <p>Amount:</p>
                   <span className={styles.agentFee_amount}>
-                    {fullData?.roomPricePayment?.amount?.toLocaleString("en-NG", {
-                      style: "currency",
-                      currency: "NGN",
-                    })}
+                    {fullData?.roomPricePayment?.amount?.toLocaleString(
+                      "en-NG",
+                      {
+                        style: "currency",
+                        currency: "NGN",
+                      }
+                    )}
                   </span>
                 </div>
               </article>

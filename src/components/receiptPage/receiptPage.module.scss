@@ -4,7 +4,7 @@
 }
 
 .agentFee_wrapper {
-  padding: 10px 30px;
+  padding: 10px 20px;
   background-color: rgb(248, 248, 236);
 }
 
@@ -32,7 +32,7 @@
 .sec_02 {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15px;
+  margin-top: 12px;
   border-radius: 5px;
 
   header {
@@ -50,7 +50,7 @@
     }
   }
   .article_01 {
-    padding: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     background-color: rgb(249, 246, 246);
@@ -187,7 +187,7 @@
   }
 }
 .button_div {
-  margin-top: 10px;
+  margin-top: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -214,24 +214,36 @@
   gap: 10px;
   z-index: 1000;
   background-color: rgb(246, 237, 239);
+  div {
+    font-family: roboto;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: inter;
+    line-height: 30px;
+  }
 }
 
-.sec_06{
-display: flex;
-gap: 7px;
-flex-direction: column;
-background-color: rgb(245, 218, 218);
-padding: 15px;
-header{
-  font-family: roboto;
-  text-align: center;
-  font-weight: 600;
-  color: rgb(172, 4, 4);
-  letter-spacing: 0.5px;
-}
-p{
-  font-family: inter;
-  font-size: 16px;
-  line-height: 18px;
-}
+.sec_06 {
+  display: flex;
+  gap: 7px;
+  flex-direction: column;
+  background-color: rgb(245, 218, 218);
+  padding: 10px;
+  header {
+    font-family: roboto;
+    text-align: center;
+    font-weight: 600;
+    color: rgb(172, 4, 4);
+    letter-spacing: 0.5px;
+  }
+  p {
+    font-family: inter;
+    font-size: 16px;
+    line-height: 18px;
+  }
 }
