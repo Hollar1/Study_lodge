@@ -105,7 +105,7 @@ function Profile() {
             </div>
           </div>
         </section>
-        <button onClick={()=>{navigate("/rent-receipt")}}>payment receipt</button>
+ 
 
         {data?.agentFeePayment && (
           <section className={styles.sec_03}>
