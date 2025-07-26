@@ -64,9 +64,9 @@ function AdminSignUp() {
       if (error) {
         console.log(error);
         setFailedModal(error?.response?.data?.message);
-        // setTimeout(() => {
-        //   setFailedModal(null);
-        // }, 4000);
+        setTimeout(() => {
+          setFailedModal(null);
+        }, 4000);
       }
     } finally {
       setShowSpinner(false);
@@ -86,30 +86,31 @@ function AdminSignUp() {
           <section className={styles.sec_02}>
             <Input
               label={"First Name"}
-              value={signUpDetails.first_name}
+              value={signUpDetails.first_name.toLowerCase()}
               name={"first_name"}
               onChange={handleOnChange}
             />
             <Input
               label={"Last Name"}
-              value={signUpDetails.last_name}
+              value={signUpDetails.last_name.toLowerCase()}
               name={"last_name"}
               onChange={handleOnChange}
             />
             <Input
               label={"Gender"}
-              value={signUpDetails.gender}
+              value={signUpDetails.gender.toLowerCase()}
               name={"gender"}
               onChange={handleOnChange}
             />
             <Input
               label={"Email"}
-              value={signUpDetails.email}
+              value={signUpDetails.email.toLowerCase()}
               name={"email"}
               onChange={handleOnChange}
             />
             <Input
               label={"Phone"}
+              type={"number"}
               value={signUpDetails.phone_number}
               name={"phone_number"}
               onChange={handleOnChange}

@@ -93,7 +93,7 @@ function Login() {
           <section className={styles.sec_02}>
             <Input
               label={"Email"}
-              value={loginDetails.email}
+              value={loginDetails.email.toLowerCase()}
               name={"email"}
               onChange={handleOnChange}
             />
