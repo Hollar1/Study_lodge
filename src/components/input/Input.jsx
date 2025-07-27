@@ -11,6 +11,8 @@ function Input({
   placeholder,
   inputMode,
   icon,
+  autoComplete,
+  autoCapitalize,
 }) {
   return (
     <div className={styles.wrapper}>
@@ -23,6 +25,8 @@ function Input({
           inputMode={inputMode}
           name={name}
           onChange={onChange}
+          autoComplete={autoComplete}
+          autoCapitalize={autoCapitalize}
         />
         <span>{icon ? <FontAwesomeIcon icon={icon} /> : null}</span>
       </div>

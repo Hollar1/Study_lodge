@@ -1,10 +1,18 @@
 .wrapper {
   padding: 15px;
   position: fixed;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
 }
 
 .sec_01 {
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
   font-family: roboto;
@@ -16,6 +24,7 @@
 
 .sec_02 {
   margin-top: 13px;
+  width: 100%;
   aside {
     display: flex;
     gap: 10px;
@@ -29,6 +38,7 @@
   }
   div {
     display: flex;
+    width: 100%;
     justify-content: center;
     flex-direction: column;
     word-break: break-all;
@@ -46,6 +56,7 @@
     }
     div {
       display: flex;
+      width: 100%;
       flex-direction: row;
       justify-content: left;
       gap: 15px;
@@ -60,7 +71,6 @@
         letter-spacing: 0.5px;
         width: 110px;
       }
-
 
       .logout_btn {
         border: none;
@@ -89,17 +99,13 @@
           background-color: #191970;
         }
       }
-
-
-
-
-
     }
   }
 }
 
 .sec_03 {
   margin-top: 10px;
+  width: 100%;
   table {
     width: 100%;
     border: solid 1.5px;
@@ -147,10 +153,10 @@
       }
     }
   }
-  .paid{
+  .paid {
     color: green;
   }
-  .waiting{
+  .waiting {
     color: red;
   }
 }
@@ -212,6 +218,7 @@
   background-color: rgb(235, 241, 244);
   margin-top: 13px;
   padding: 20px;
+  width: 100%;
   header {
     display: flex;
     justify-content: center;
@@ -223,11 +230,13 @@
   }
   aside {
     display: flex;
+    width: 100%;
     flex-direction: column;
     width: 250px;
     margin: auto;
     div {
       display: grid;
+      width: 100%;
       grid-template-columns: repeat(2, 1fr);
       place-content: center;
       gap: 10px;
@@ -241,6 +250,7 @@
 .address_div {
   margin-top: 7px;
   display: flex;
+  width: 100%;
   gap: 5px;
   p {
     font-family: inter;

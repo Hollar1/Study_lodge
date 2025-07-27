@@ -103,6 +103,9 @@ function Login() {
               value={loginDetails.password}
               name={"password"}
               onChange={handleOnChange}
+              type={"text"}
+              autoCapitalize={"off"}
+              autoComplete={"off"}
             />
           </section>
           <section className={styles.sec_03}>

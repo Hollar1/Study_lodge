@@ -9,7 +9,7 @@ function Profile() {
   const navigate = useNavigate();
 
   const [data, setData] = useState(null);
-  console.log(data?.rentDetails);
+  const [emergencyContactDetails, setEmergencyContactDetails] = useState(true);
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");
@@ -105,7 +105,6 @@ function Profile() {
             </div>
           </div>
         </section>
- 
 
         {data?.agentFeePayment && (
           <section className={styles.sec_03}>
@@ -248,36 +247,31 @@ function Profile() {
           </section>
         )}
 
-        <section className={styles.sec_06}>
-          <header>Emergency Contact Person</header>
-          <aside>
-            <div>
-              <p>Full Name:-</p>
-              <span>Kareem Suliyat</span>
-            </div>
-            <div>
-              <p>Relationship:-</p>
-              <span>Kareem Suliyat</span>
-            </div>
+        {emergencyContactDetails && (
+          <section className={styles.sec_06}>
+            <header>Emergency Contact Person</header>
+            <aside>
+              <div>
+                <p>Full Name:-</p>
+                <span>Kareem Suliyat</span>
+              </div>
+              <div>
+                <p>Relationship:-</p>
+                <span>Kareem Suliyat</span>
+              </div>
 
-            <div>
-              <p>Phone Num:-</p>
-              <span>Kareem Suliyat</span>
-            </div>
-          </aside>
+              <div>
+                <p>Phone Num:-</p>
+                <span>Kareem Suliyat</span>
+              </div>
+            </aside>
 
-          <div className={styles.address_div}>
-            <p>Address:</p>
-            <address>F/ab55, iku , ikare akoko, Ondo state, Nigeria.</address>
-          </div>
-        </section>
-        {/* <button
-          onClick={() => {
-            navigate("/receipt-page");
-          }}
-        >
-          RECEIPT PAGE
-        </button> */}
+            <div className={styles.address_div}>
+              <p>Address:</p>
+              <address>F/ab55, iku , ikare akoko, Ondo state, Nigeria.</address>
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
