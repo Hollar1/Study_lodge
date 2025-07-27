@@ -82,12 +82,17 @@ function AllHostels() {
         </section>
 
         <section className={styles.sec_02}>
-          <button onClick={()=>{navigate("/create-hostel")}}>Create Hostel </button> 
+          <button
+            onClick={() => {
+              navigate("/create-hostel");
+            }}
+          >
+            Create Hostel{" "}
+          </button>
           <article>
             <div>Total Hostels:</div>
             <span>{12}</span>
           </article>
-
         </section>
 
         <section className={styles.sec_03}>
@@ -100,8 +105,7 @@ function AllHostels() {
                 <th>Update</th>
                 <th>Send Email</th>
                 <th> Send SMS</th>
-                <th>Close</th>
-                <th>Delete</th>
+                <th colSpan={"2"}>Actions</th>
               </tr>
             </thead>
             <tbody>

@@ -4,7 +4,7 @@
 }
 
 .sec_01 {
-  padding-top: 20px;
+  padding-top: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,9 +23,8 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-
   .sec_02 {
-    margin-top: 25px;
+    margin-top: 15px;
     width: 60%;
     border-radius: 15px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.5);
@@ -67,6 +66,44 @@ form {
       }
     }
   }
+  fieldset {
+    width: 58%;
+    border-radius: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    legend {
+      font-size: 18px;
+      margin: 0% 3px;
+    }
+
+    div {
+      display: flex;
+      gap: 30px;
+      label {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        max-width: 500px;
+        margin: auto;
+        font-size: 18px;
+        font-family: inter;
+        font-weight: 450;
+        letter-spacing: 0.5px;
+        select {
+          width: 100%;
+          height: 40px;
+          border-radius: 3px;
+          font-size: 17px;
+          padding: 0% 10px;
+        }
+      }
+    }
+  }
 }
 
 .A {
@@ -101,9 +138,9 @@ form {
   section {
     border: solid gray;
     border-radius: 5px;
-    margin: 4px;
+    margin-top: -7px;
     width: 100%;
-    height: 80px;
+    height: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -135,6 +172,7 @@ form {
 }
 
 .btn_nav {
+  margin-top: 10px;
   margin-left: 8px;
   width: 58%;
   display: flex;

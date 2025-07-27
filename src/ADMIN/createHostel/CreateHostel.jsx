@@ -16,6 +16,7 @@ function CreateHostel() {
     address: "",
     hostel_details: "",
     images: [],
+
   });
 
   const handleOnChange = (e) => {
@@ -92,6 +93,7 @@ function CreateHostel() {
                     value={hostelDetails.hostel_name}
                     name="hostel_name"
                     onChange={handleOnChange}
+                    autoComplete="off"
                   />
                 </label>
               </div>
@@ -104,22 +106,80 @@ function CreateHostel() {
                     value={hostelDetails.address}
                     name="address"
                     onChange={handleOnChange}
+                    autoComplete="off"
                   />
                 </label>
               </div>
-              <div>
-                <label htmlFor="">
-                  Information
-                  <textarea
-                    disabled
-                    className={styles.B}
-                    type="text"
-                    value={hostelDetails.hostel_details}
-                    name="hostel_details"
-                    onChange={handleOnChange}
-                  />
-                </label>
-              </div>
+
+              <fieldset>
+                <legend>Features</legend>
+                <div>
+                  <label htmlFor="">
+                    Room Type
+                    <select name="" id="">
+                      <option value="">--Select--</option>
+                      <option value="furnished">Furnished</option>
+                      <option value="unfurnished">Unfurnished</option>
+                    </select>
+                  </label>
+
+                  <label htmlFor="">
+                    Bills-Inclusive
+                    <select name="" id="">
+                      <option value="">--Select--</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                  </label>
+                </div>
+
+                <div>
+                  <label htmlFor="">
+                    Cctv
+                    <select name="" id="">
+                      <option value="">--Select--</option>
+                      <option value="no">No</option>
+                      <option value="yes">yes</option>
+                      <option value="24/7">24/7</option>
+                    </select>
+                  </label>
+
+                  <label htmlFor="">
+                    Water-Supply
+                    <select>
+                      <option value="">--Select--</option>
+                      <option value="no">No</option>
+                      <option value="yes">Yes</option>
+                      <option value="24/7">24/7</option>
+                    </select>
+                  </label>
+                </div>
+
+                <div>
+                  <label htmlFor="">
+                    To-School
+                    <select>
+                      <option value="">--Select--</option>
+                      <option value="05 min">05 Min</option>
+                      <option value="10 min">10 Min</option>
+                      <option value="15 min">15 Min</option>
+                      <option value="20 min">20 Min</option>
+                      <option value="25 min">25 Min</option>
+                      <option value="30 min">30 Min</option>
+                    </select>
+                  </label>
+
+                  <label >
+                    Electricity
+                    <select name="" id="">
+                      <option value="">--Select--</option>
+                      <option value="no">No</option>
+                      <option value="yes">Yes</option>
+                      <option value="24/7">24/7</option>
+                    </select>
+                  </label>
+                </div>
+              </fieldset>
 
               <section className={styles.image_sec}>
                 <label htmlFor="">

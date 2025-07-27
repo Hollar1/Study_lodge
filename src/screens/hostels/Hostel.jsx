@@ -98,7 +98,7 @@ function Hostel() {
         </section>
 
         <section className={styles.sec_02}>
-          <header>Features</header>
+          <header>Hostel/Room Features</header>
           <article>
             <div>
               <b>
@@ -108,7 +108,7 @@ function Hostel() {
                 Cctv: <span>24/7</span>
               </b>
               <b>
-                To-School: <span>2Miles</span>
+                To-School: <span>2Miles. 🚶‍♂️</span>
               </b>
             </div>
             <div>
