@@ -73,6 +73,9 @@ function CreateHostel() {
       if (error) {
         console.log(error.response?.data?.message);
         setFailedMessage(error.response?.data?.message);
+        setTimeout(() => {
+          setFailedMessage("");
+        }, 4000);
       }
     } finally {
       setShowSpinner(false);
