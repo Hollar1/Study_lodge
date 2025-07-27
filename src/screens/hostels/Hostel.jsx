@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
   faChevronLeft,
+  faPersonWalking,
 } from "@fortawesome/free-solid-svg-icons";
 
 function Hostel() {
@@ -99,7 +100,7 @@ function Hostel() {
                 Cctv: <span>24/7</span>
               </b>
               <b>
-                To-School: <span>2Miles. 🚶‍♂️</span>
+                To-School: <span>2Miles. <FontAwesomeIcon icon={faPersonWalking}/></span>
               </b>
             </div>
             <div>
