@@ -12,15 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Hostel() {
-  const features = [
-    "Furnished",
-    "Bill-Inclusive",
-    "CCTV-Compound",
-    "Electricity",
-    "water-Supply",
-    "school-Distance",
-  ];
-
   const { hostel_id } = useParams();
   const navigate = useNavigate();
 
