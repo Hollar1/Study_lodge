@@ -265,7 +265,6 @@ function BookInspection() {
             />
           </section>
         </form>
-        <button onClick={() => navigate("/receipt-page")}>Receipt Page</button>
       </div>
     </div>
   );
