@@ -1,22 +1,28 @@
 import React, { useRef, useState } from "react";
 import styles from "../createHostel/createHostel.module.scss";
 import Button from "../../components/button/Button";
-import Spinner from "../../components/spinner/Spinner";
 import axiosInstance from "../../utils/axiosInstance";
 import { endpoints } from "../../utils/api";
 import Modal from "../../components/modal/Modal";
+import FailedModal from "../../components/failedModal/FailedModal";
+import Spinner from "../../components/spinner/Spinner";
 import { useNavigate } from "react-router-dom";
 
 function CreateHostel() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
+  const [failedMessage, setFailedMessage] = useState("");
+
+  const sliceError = failedMessage
+    ?.slice(12, failedMessage.length - 42)
+    .replace(/"/g, "");
+
   const [hostelDetails, setHostelDetails] = useState({
     hostel_name: "",
     address: "",
     hostel_details: "",
     images: [],
-
   });
 
   const handleOnChange = (e) => {
@@ -46,9 +52,9 @@ function CreateHostel() {
     try {
       const fd = new FormData();
 
-      fd.append("hostel_name", hostelDetails.hostel_name);
-      fd.append("address", hostelDetails.address);
-      fd.append("hostel_details", "hhhhhhhhhhhaSHSAAOiu");
+      fd.append("hostel_name", hostelDetails.hostel_name.toLowerCase());
+      fd.append("address", hostelDetails.address.toLowerCase());
+      fd.append("hostel_details", "nothing to be gere");
       hostelDetails.images.forEach((image) => {
         fd.append("images", image);
       });
@@ -66,6 +72,7 @@ function CreateHostel() {
     } catch (error) {
       if (error) {
         console.log(error.response?.data?.message);
+        setFailedMessage(error.response?.data?.message);
       }
     } finally {
       setShowSpinner(false);
@@ -75,6 +82,7 @@ function CreateHostel() {
     <div className={styles.parent_wrapper}>
       {showSpinner && <Spinner />}
       {showModal && <Modal body={"Hostel Created Successfully"} />}
+      {failedMessage && <FailedModal body={sliceError} />}
       <div>
         <section className={styles.sec_01}>
           <header>Add New Hostel</header>
@@ -84,19 +92,33 @@ function CreateHostel() {
           <section className={styles.sec_02}>
             <header>Hostel Information</header>
             <main>
-              <div>
-                <label htmlFor="">
-                  Hostel Name
-                  <input
-                    className={styles.A}
-                    type="text"
-                    value={hostelDetails.hostel_name}
-                    name="hostel_name"
-                    onChange={handleOnChange}
-                    autoComplete="off"
-                  />
-                </label>
-              </div>
+              <div></div>
+              <fieldset className={styles.fieldset_A}>
+                <div>
+                  <label htmlFor="">
+                    Hostel Name
+                    <input
+                      type="text"
+                      className={styles.A}
+                      value={hostelDetails.hostel_name}
+                      name="hostel_name"
+                      onChange={handleOnChange}
+                      autoComplete="off"
+                    />
+                  </label>
+
+                  <label htmlFor="">
+                    School
+                    <select name="" id="">
+                      <option value="">--Select--</option>
+                      <option value="yes">KWASU Molete</option>
+                      <option value="no">AAU Akungba</option>
+                      <option value="no">FP Offa</option>
+                    </select>
+                  </label>
+                </div>
+              </fieldset>
+
               <div>
                 <label htmlFor="">
                   Address
@@ -111,7 +133,7 @@ function CreateHostel() {
                 </label>
               </div>
 
-              <fieldset>
+              <fieldset className={styles.fieldset_B}>
                 <legend>Features</legend>
                 <div>
                   <label htmlFor="">
@@ -169,7 +191,7 @@ function CreateHostel() {
                     </select>
                   </label>
 
-                  <label >
+                  <label>
                     Electricity
                     <select name="" id="">
                       <option value="">--Select--</option>

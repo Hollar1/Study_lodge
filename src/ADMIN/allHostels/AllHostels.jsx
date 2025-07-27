@@ -102,10 +102,9 @@ function AllHostels() {
                 <th>Hostel' Name</th>
                 <th>Address</th>
                 <th>Add Rooms</th>
-                <th>Update</th>
                 <th>Send Email</th>
                 <th> Send SMS</th>
-                <th colSpan={"2"}>Actions</th>
+                <th colSpan={"3"}>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -120,18 +119,19 @@ function AllHostels() {
                   >
                     <button> Add Room</button>
                   </td>
+
+                  <td>
+                    <button>Send Email</button>
+                  </td>
+                  <td>
+                    <button>Send SMS</button>
+                  </td>
                   <td
                     onClick={() => {
                       handleNavigateToUpdateHostel(hostel.id);
                     }}
                   >
                     <button> Update</button>
-                  </td>
-                  <td>
-                    <button>Send Email</button>
-                  </td>
-                  <td>
-                    <button>Send SMS</button>
                   </td>
                   <td>
                     <button>Close</button>

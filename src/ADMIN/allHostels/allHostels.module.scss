@@ -58,7 +58,7 @@
     color: white;
     padding: 2px 20px;
     border-radius: 8px;
-    &:hover{
+    &:hover {
       background-color: #5b5bce;
       cursor: pointer;
     }
@@ -129,7 +129,7 @@
         td {
           &:nth-child(4) {
             button {
-              background-color: skyblue;
+              background-color: rgb(112, 199, 112);
               &:hover {
                 cursor: pointer;
                 background-color: rgb(196, 226, 238);
@@ -140,13 +140,6 @@
 
         td {
           &:nth-child(5) {
-            // button {
-            //   background-color: rgb(174, 217, 234);
-            //   &:hover {
-            //     cursor: pointer;
-            //     background-color: rgb(213, 231, 239);
-            //   }
-            // }
             button {
               background-color: rgb(112, 199, 112);
               &:hover {
@@ -163,7 +156,7 @@
         td {
           &:nth-child(6) {
             button {
-              background-color: rgb(112, 199, 112);
+              background-color: skyblue;
               &:hover {
                 cursor: pointer;
                 &:hover {
