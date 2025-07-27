@@ -100,7 +100,7 @@ function Hostel() {
                 Cctv: <span>24/7</span>
               </b>
               <b>
-                To-School: <span>2Miles. <FontAwesomeIcon icon={faPersonWalking}/></span>
+                <FontAwesomeIcon fontSize={18} icon={faPersonWalking}/> School: <span>2min. </span>
               </b>
             </div>
             <div>
