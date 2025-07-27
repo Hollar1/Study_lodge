@@ -35,13 +35,6 @@ function AdminNavBar() {
           <div>Booking(3)</div>
           <div
             onClick={() => {
-              navigate("/create-hostel");
-            }}
-          >
-            Create Hostel
-          </div>
-          <div
-            onClick={() => {
               navigate("/");
             }}
           >

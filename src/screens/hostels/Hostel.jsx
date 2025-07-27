@@ -12,6 +12,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Hostel() {
+  const features = [
+    "Furnished",
+    "Bill-Inclusive",
+    "CCTV-Compound",
+    "Electricity",
+    "water-Supply",
+    "school-Distance",
+  ];
+
   const { hostel_id } = useParams();
   const navigate = useNavigate();
 
@@ -24,8 +33,7 @@ function Hostel() {
   const [hostelDetails, setHostelDetails] = useState(null);
   // console.log(hostelDetails);
   const [rooms, setRooms] = useState([]);
-  console.log(rooms)
-
+  console.log(rooms);
 
   const [images, setImages] = useState([]);
 
@@ -72,17 +80,8 @@ function Hostel() {
     navigate(userToken ? `/book-inspection/${room_id}` : "/login");
   };
 
-
-
-
-
-
-
-
-
   return (
     <div>
-      {/* <NavBar /> */}
       <div className={styles.wrapper}>
         <section className={styles.sec_01}>
           <h3>{hostelDetails?.hostel_name}</h3>
@@ -96,13 +95,43 @@ function Hostel() {
               <FontAwesomeIcon icon={faChevronLeft} />
             </button>
           </div>
-          {/* <article>
-            <header>Accommodation Details</header>
-            <p> {hostelDetails?.hostel_details}</p>
-          </article> */}
         </section>
 
         <section className={styles.sec_02}>
+          <header>Features</header>
+          <article>
+            <div>
+              <b>
+                Furnished: <span>Yes</span>
+              </b>
+              <b>
+                Cctv: <span>24/7</span>
+              </b>
+              <b>
+                To-School: <span>2Miles</span>
+              </b>
+            </div>
+            <div>
+              <b>
+                Bill-Inclusive: <span>Yes</span>
+              </b>
+              <b>
+                water-Supply: <span>24/7</span>
+              </b>
+              <b>
+                Electricity: <span>Yes</span>
+              </b>
+            </div>
+          </article>
+
+          <div className={styles.address_div}>
+            <b>
+              Address: <i>Num 23 olorunsogo street , ara area, kwara state. </i>
+            </b>
+          </div>
+        </section>
+
+        <section className={styles.sec_03}>
           <header>Book Inspection</header>
 
           <div className={styles.room_container}>
@@ -164,7 +193,7 @@ function Hostel() {
 
                   <button
                     className={
-                      room.status === "booked" || room.status==="rented"
+                      room.status === "booked" || room.status === "rented"
                         ? styles.roomBooked
                         : styles.roomAvailable
                     }

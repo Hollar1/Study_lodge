@@ -15,6 +15,8 @@ function AllHostels() {
   const [showSpinner, setShowSpinner] = useState(false);
   const [showFailedModal, setShowFailedModal] = useState(false);
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   const fetchHostels = async () => {
     const response = await axiosInstance.get(`${endpoints.getAllHostel}`);
     if (response) {
@@ -55,6 +57,12 @@ function AllHostels() {
     navigate(`/update-hostel/${hostel_id}`);
   };
 
+  const search_for_hostel = hostels.filter((hostel) =>
+    hostel.hostel_name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  console.log(search_for_hostel);
+
   return (
     <div className={styles.parent_wrapper}>
       {showSpinner && <Spinner />}
@@ -63,14 +71,23 @@ function AllHostels() {
         <section className={styles.sec_01}>
           <header>All Hostels</header>
           <div>
-            <input type="text" />
+            <input
+              type="text"
+              placeholder="Search by hostel's name"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
             <FontAwesomeIcon icon={faSearch} className={styles.icon} />
           </div>
         </section>
 
         <section className={styles.sec_02}>
-          <div>Total Hostels:</div>
-          <span>{12}</span>
+          <button onClick={()=>{navigate("/create-hostel")}}>Create Hostel </button> 
+          <article>
+            <div>Total Hostels:</div>
+            <span>{12}</span>
+          </article>
+
         </section>
 
         <section className={styles.sec_03}>
@@ -88,7 +105,7 @@ function AllHostels() {
               </tr>
             </thead>
             <tbody>
-              {hostels.map((hostel) => (
+              {search_for_hostel?.map((hostel) => (
                 <tr key={hostel.id}>
                   <td>{hostel.hostel_name}</td>
                   <td>{hostel.address}</td>
@@ -97,24 +114,30 @@ function AllHostels() {
                       handleNavigateToAddRoom(hostel.id);
                     }}
                   >
-                    Add Room
+                    <button> Add Room</button>
                   </td>
                   <td
                     onClick={() => {
                       handleNavigateToUpdateHostel(hostel.id);
                     }}
                   >
-                    Update
+                    <button> Update</button>
                   </td>
-                  <td>Send Email</td>
-                  <td>Send SMS</td>
-                  <td>Close</td>
+                  <td>
+                    <button>Send Email</button>
+                  </td>
+                  <td>
+                    <button>Send SMS</button>
+                  </td>
+                  <td>
+                    <button>Close</button>
+                  </td>
                   <td
                     onClick={() => {
                       handleDeleteHostel(hostel.id);
                     }}
                   >
-                    Delete
+                    <button> Delete</button>
                   </td>
                 </tr>
               ))}

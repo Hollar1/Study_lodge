@@ -32,6 +32,11 @@
       border: none;
       outline: none;
       font-size: 18px;
+      padding-inline-start: 3px;
+      &::placeholder {
+        font-size: 15px;
+        letter-spacing: 0.3px;
+      }
     }
     .icon {
       font-size: 22px;
@@ -42,21 +47,30 @@
 
 .sec_02 {
   display: flex;
-  align-items: center;
-  justify-content: right;
-  padding: 0% 30px;
-  gap: 5px;
-  font-family: inter;
-  font-weight: 600;
-  div {
+  width: 100%;
+  justify-content: space-between;
+  button {
+    font-family: inter;
+    letter-spacing: 0.5px;
+    font-weight: 600;
     font-size: 20px;
-  }
-  span {
-    color: white;
     background-color: #191970;
-    padding: 5px;
-    border-radius: 50%;
-    font-size: 18px;
+    color: white;
+    padding: 2px 20px;
+    border-radius: 8px;
+    &:hover{
+      background-color: #5b5bce;
+      cursor: pointer;
+    }
+  }
+
+  article {
+    display: flex;
+    gap: 3px;
+    color: green;
+    font-family: roboto;
+    font-weight: 500;
+    font-size: 22px;
   }
 }
 
@@ -87,51 +101,75 @@
           text-transform: capitalize;
           font-family: inter;
           font-size: 16px;
-        }
-        td {
-          &:nth-child(3) {
-            text-align: center;
-            color: green;
-            font-weight: 600;
+          button {
+            width: 100%;
+            height: 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            border: none;
+            font-weight: 400;
             font-size: 17px;
-            &:hover {
-              cursor: pointer;
-              background-color: green;
-              color: white;
-            }
           }
         }
         td {
+          &:nth-child(3) {
+            button {
+              background-color: green;
+              color: white;
+              &:hover {
+                cursor: pointer;
+                background-color: rgb(5, 160, 5);
+                color: white;
+              }
+            }
+          }
+        }
+
+        td {
           &:nth-child(4) {
-            text-align: center;
-            background-color: skyblue;
-            &:hover {
-              cursor: pointer;
-              background-color: rgb(196, 226, 238);
+            button {
+              background-color: skyblue;
+              &:hover {
+                cursor: pointer;
+                background-color: rgb(196, 226, 238);
+              }
             }
           }
         }
 
         td {
           &:nth-child(5) {
-            text-align: center;
-            background-color: rgb(174, 217, 234);
-            &:hover {
-              cursor: pointer;
-              background-color: rgb(213, 231, 239);
+            // button {
+            //   background-color: rgb(174, 217, 234);
+            //   &:hover {
+            //     cursor: pointer;
+            //     background-color: rgb(213, 231, 239);
+            //   }
+            // }
+            button {
+              background-color: rgb(112, 199, 112);
+              &:hover {
+                cursor: pointer;
+                &:hover {
+                  cursor: pointer;
+                  background-color: rgb(199, 236, 199);
+                }
+              }
             }
           }
         }
 
         td {
           &:nth-child(6) {
-            text-align: center;
-            background-color: rgb(112, 199, 112);
-            &:hover {
-              cursor: pointer;
+            button {
+              background-color: rgb(112, 199, 112);
               &:hover {
                 cursor: pointer;
-                background-color: rgb(199, 236, 199);
+                &:hover {
+                  cursor: pointer;
+                  background-color: rgb(199, 236, 199);
+                }
               }
             }
           }
@@ -139,23 +177,25 @@
 
         td {
           &:nth-child(7) {
-            text-align: center;
-            background-color: rgb(219, 159, 9);
-            &:hover {
-              cursor: pointer;
-              background-color: rgb(237, 210, 142);
+            button {
+              background-color: rgb(219, 159, 9);
+              &:hover {
+                cursor: pointer;
+                background-color: rgb(237, 210, 142);
+              }
             }
           }
         }
 
         td {
           &:nth-child(8) {
-            text-align: center;
-            background-color: rgb(179, 5, 5);
-            color: white;
-            &:hover {
-              cursor: pointer;
-              background-color: red;
+            button {
+              background-color: rgb(163, 4, 4);
+              color: white;
+              &:hover {
+                cursor: pointer;
+                background-color: red;
+              }
             }
           }
         }
