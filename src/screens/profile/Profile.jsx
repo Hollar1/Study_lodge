@@ -9,6 +9,8 @@ function Profile() {
   const navigate = useNavigate();
 
   const [data, setData] = useState(null);
+  console.log(data);
+
   const [emergencyContactDetails, setEmergencyContactDetails] = useState(true);
 
   const handleLogout = () => {
@@ -46,7 +48,6 @@ function Profile() {
         booking_id: data?.agentFeePayment?.booking?._id,
         callback_url: `${origin}/rent-receipt`,
       };
-      // console.log(payload);
       const response = await axiosInstance.post(
         `${endpoints.roomFeePayment}`,
         payload
@@ -204,7 +205,7 @@ function Profile() {
 
                   <td>
                     {data?.rentDetails?.rentStartDate
-                      ? new Date(data.rentDetails.rentDueDate)
+                      ? new Date(data.rentDetails.rentStartDate)
                           .toISOString()
                           .split("T")[0]
                       : "N/A"}
@@ -272,6 +273,13 @@ function Profile() {
             </div>
           </section>
         )}
+        <button
+          onClick={() => {
+            navigate("/more-details");
+          }}
+        >
+          Go To MoreDetails
+        </button>
       </div>
     </div>
   );

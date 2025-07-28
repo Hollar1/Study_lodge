@@ -27,6 +27,7 @@ import AdminSignUp from "./ADMIN/adminSignUp/AdminSignUp";
 import AllUsers from "./ADMIN/allUsers/AllUsers";
 import UpdateHostel from "./ADMIN/updateHostel/UpdateHostel";
 import RentReceipt from "./components/rentReceipt/RentReceipt";
+import MoreDetails from "./screens/moreDetails/MoreDetails";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -64,6 +65,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/help-support" element={<HelpSupport />} />
           <Route path="/review" element={<Review />} />
+          <Route path="/more-details" element={<MoreDetails/>} />
          
           <Route
             path="/book-inspection/:room_id"

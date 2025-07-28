@@ -69,3 +69,11 @@ input:-webkit-autofill {
 input:-webkit-autofill {
   transition: background-color 5000s ease-in-out 0s;
 }
+.quill .ql-editor {
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  font-size: 20px;
+  height: 330px;
+  max-width: 100%;
+  background: #fafafa;
+}

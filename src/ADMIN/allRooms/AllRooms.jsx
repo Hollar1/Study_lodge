@@ -74,6 +74,8 @@ function AllRooms() {
     chosenRoomDetails(room_id);
   };
 
+
+
   const handleMakeRoomAvailable = async () => {
     const makeRoomAvailable = endpoints.makeRoomAvailable.replace(
       "{id}",
@@ -82,7 +84,7 @@ function AllRooms() {
     console.log("this is it", makeRoomAvailable);
     try {
       const payload = {
-        status: "available",
+        status: "Available",
       };
       const response = await axiosInstance.patch(
         `${makeRoomAvailable}`,
@@ -93,6 +95,12 @@ function AllRooms() {
       console.log(error.response?.data);
     }
   };
+
+
+
+
+
+
 
   const chosenRoomDetails = async (room_id) => {
     const response = await axiosInstance.get(

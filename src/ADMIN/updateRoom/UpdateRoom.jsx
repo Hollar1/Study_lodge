@@ -72,6 +72,8 @@ function UpdateRoom() {
     }
   };
 
+
+
   useEffect(() => {
     const fetchRoom = async () => {
       const response = await axiosInstance.get(
@@ -84,13 +86,6 @@ function UpdateRoom() {
   }, [roomId]);
 
 
-
-
-
-
-
-
-
   useEffect(() => {
     const fetchHostel = async () => {
       const response = await axiosInstance.get(
@@ -100,6 +95,8 @@ function UpdateRoom() {
     };
     fetchHostel();
   }, [hostelId]);
+
+
 
   return (
     <div>

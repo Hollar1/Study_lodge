@@ -8,6 +8,8 @@ import { endpoints } from "../../utils/api";
 
 function AdminDashboard() {
 
+
+  
   const getAllTenants = async () => {
     try {
       const response = await axiosInstance.get(`${endpoints.getAllTenants}`);
@@ -19,6 +21,12 @@ function AdminDashboard() {
   useEffect(()=>{
     getAllTenants()
   },[])
+
+
+
+
+
+
   return (
     <div>
       <AdminNavBar />

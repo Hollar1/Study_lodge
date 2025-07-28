@@ -26,8 +26,15 @@ export const endpoints = {
   get_A_room: "/rooms/room/",
   addRoom: "/rooms",
   get_all_rooms: "/rooms",
+
+
+
   updateRoom: "/rooms/",
+
+
   deleteRoom: "/rooms/",
+
+  
   makeRoomAvailable:"/rooms/{id}/status",
 
   // BOOKINGS

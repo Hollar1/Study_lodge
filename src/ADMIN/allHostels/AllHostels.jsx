@@ -7,13 +7,18 @@ import { endpoints } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import FailedModal from "../../components/failedModal/FailedModal";
 import Spinner from "../../components/spinner/Spinner";
+import QuillMessage from "../../components/quillMessage/QuillMessage";
 
 function AllHostels() {
   const navigate = useNavigate();
   const [hostels, setHostels] = useState([]);
 
+  const [mail_id, set_mail_id] = useState("");
+
   const [showSpinner, setShowSpinner] = useState(false);
   const [showFailedModal, setShowFailedModal] = useState(false);
+
+  const [showQuillMessage, setShowQuillMessage] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -61,12 +66,27 @@ function AllHostels() {
     hostel.hostel_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  console.log(search_for_hostel);
+  const handleGetHostel_id = (hostel_id_email) => {
+    set_mail_id(hostel_id_email);
+    setShowQuillMessage(true);
+  };
 
   return (
     <div className={styles.parent_wrapper}>
       {showSpinner && <Spinner />}
       {showFailedModal && <FailedModal body={"Hostel Deleted Successfully!"} />}
+
+      {showQuillMessage && (
+        <QuillMessage
+          sendMessage={() => {
+            setShowQuillMessage(true);
+          }}
+          closeMessage={() => {
+            setShowQuillMessage(false);
+          }}
+        />
+      )}
+
       <div>
         <section className={styles.sec_01}>
           <header>All Hostels</header>
@@ -121,7 +141,13 @@ function AllHostels() {
                   </td>
 
                   <td>
-                    <button>Send Email</button>
+                    <button
+                      onClick={() => {
+                        handleGetHostel_id(hostel.id);
+                      }}
+                    >
+                      Send Email
+                    </button>
                   </td>
                   <td>
                     <button>Send SMS</button>
@@ -154,3 +180,7 @@ function AllHostels() {
 }
 
 export default AllHostels;
+
+
+
+

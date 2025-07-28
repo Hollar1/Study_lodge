@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../login/login.module.scss";
 import company_logo from "../../assets/images/company_logo_01.png";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
-import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import NavBar from "../../components/navBar/NavBar";
+import {faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import Modal from "../../components/modal/Modal";
 import Spinner from "../../components/spinner/Spinner";
+import FailedModal from "../../components/failedModal/FailedModal";
 import { baseUrl, endpoints } from "../../utils/api";
 import axios from "axios";
-import FailedModal from "../../components/failedModal/FailedModal";
+
 function Login() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);

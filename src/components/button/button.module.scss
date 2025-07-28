@@ -14,8 +14,31 @@
     &:active {
       background-color: #8787f0;
     }
-    &:hover{
+    &:hover {
       background-color: #3535bd;
+      cursor: pointer;
+    }
+  }
+}
+
+.wrapper_B {
+  width: 100%;
+  button {
+    width: 100%;
+    height: 45px;
+    border-radius: 15px;
+    background-color: rgb(148, 3, 3);
+    color: white;
+    font-family: inter;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    border: solid;
+    &:active {
+      background-color: #8787f0;
+    }
+    &:hover {
+      background-color: rgb(187, 4, 4);
       cursor: pointer;
     }
   }
