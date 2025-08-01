@@ -32,7 +32,7 @@ function AdminNavBar() {
           >
             Rooms
           </div>
-          <div>Booking(3)</div>
+          <div onClick={()=>{navigate("/booking")}}>Booking(3)</div>
           <div
             onClick={() => {
               navigate("/");

@@ -7,7 +7,7 @@
     text-align: center;
     font-family: roboto;
     letter-spacing: 0.5px;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 15px;
   }
 }
@@ -42,12 +42,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    // background-color: rgb(234, 242, 245);
     .label {
       display: flex;
       flex-direction: column;
       width: 100%;
-
+      line-height: 23px;
       color: black;
       font-size: 16px;
       font-family: inter;
@@ -55,6 +54,7 @@
       padding: 5px;
       box-shadow: 0px 0px 0px rgb(0, 0, 0, 0.5);
       border-radius: 7px;
+      font-size: 14px;
       input {
         border: none;
         background-color: transparent;
@@ -86,7 +86,7 @@
     gap: 10px;
     width: 100%;
     padding: 10px;
-    background-color: rgb(170, 4, 4);
+    background-color: rgb(129, 3, 3);
   }
   .sec_02 {
     padding: 25px 15px;
@@ -101,7 +101,6 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-
       color: black;
       font-size: 16px;
       font-family: inter;

@@ -78,7 +78,7 @@ function MoreDetails() {
         <h3>Please Complete Your Profile Details To Enable Payment</h3>
         <section className={styles.sec_01}>
           <header>
-            <FaUser size={22} /> Personal Information
+            <FaUser size={22} />Your Personal Information
           </header>
           <section className={styles.sec_02}>
             <Input label={"House Address"} />
@@ -88,7 +88,7 @@ function MoreDetails() {
             <Input label={"Country"} />
 
             <label className={styles.label}>
-              Government issued ID as proof of identity.
+             Upload government issued i'd as proof of identity.
               <input type="file" />
             </label>
             <label className={styles.label}>

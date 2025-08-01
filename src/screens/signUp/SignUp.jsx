@@ -46,7 +46,7 @@ function SignUp() {
       const response = await axios.post(`${baseUrl}${endpoints.signUp}`, fd);
       if (response) {
         setShowModal(true);
-        console.log(response);
+        console.log(response.data);
       }
     } catch (error) {
       if (error) {
@@ -93,10 +93,14 @@ function SignUp() {
               onChange={handleOnChange}
             />
             <Input
+              type={"tel"}
               label={"Phone"}
               value={signUpDetails.phone_number}
               name={"phone_number"}
               onChange={handleOnChange}
+              placeholder={"2347000000000"}
+              maxLength={13}
+              inputMode={"numeric"}
             />
             <Input
               label={"Password"}

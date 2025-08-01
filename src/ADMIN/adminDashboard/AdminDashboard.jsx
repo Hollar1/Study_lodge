@@ -1,52 +1,53 @@
-import React, { useEffect } from "react";
-import AdminNavBar from "../adminComponents/adminNavBar/AdminNavBar";
+import React from "react";
+import styles from "../adminDashboard/adminDashboard.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import styles from "../adminDashboard/adminDashboard.module.scss";
-import axiosInstance from "../../utils/axiosInstance";
-import { endpoints } from "../../utils/api";
+import NavBar from "../../ADMIN/adminComponents/adminNavBar/AdminNavBar";
+import { MessageBox, } from "../adminComponents/sendMessage/SendMessage";
+
 
 function AdminDashboard() {
-
-
-  
-  const getAllTenants = async () => {
-    try {
-      const response = await axiosInstance.get(`${endpoints.getAllTenants}`);
-      console.log("this are the tenants",response.data)
-    } catch (error) {
-      console.log(error.response)
-    }
-  };
-  useEffect(()=>{
-    getAllTenants()
-  },[])
-
-
-
-
-
-
   return (
-    <div>
-      <AdminNavBar />
-      <div className={styles.wrapper}>
+    <div className={styles.parent_wrapper}>
+
+      {/* <MessageBox/> */}
+      <div>
         <section className={styles.sec_01}>
-          <header>Tenants</header>
-          <div>
-            <input type="text" />
-            <FontAwesomeIcon icon={faSearch} className={styles.search_icon} />
-          </div>
+          <NavBar />
+
+          <section className={styles.sec_02}>
+            <article>
+              <input
+                type="text"
+                placeholder="Search by full name"
+                value=""
+              />
+              <FontAwesomeIcon icon={faSearch} />
+            </article>
+            <i>Total Tenants: 0</i>
+          </section>
         </section>
-        <section>
+
+        <section className={styles.sec_03}>
           <table>
             <thead>
               <tr>
-                <th></th>
+                <th>Room Num</th>
+                <th>Full Name</th>
+                <th>Hostel</th>
+                <th>Unit Type</th>
+                <th>Start Date</th>
+                <th>Due Date</th>
+                <th>Days Left</th>
+                <th colSpan={2}>Actions</th>
               </tr>
             </thead>
+            <tbody></tbody>
           </table>
         </section>
+           
+        
+     
       </div>
     </div>
   );

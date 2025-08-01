@@ -16,7 +16,8 @@ function AdminSignUp() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
-  const [showFailedModal, setFailedModal] = useState(null);
+  const [showFailedModal, setFailedModal] = useState("");
+  const [number_234, setNumber_234] = useState(null);
 
   const sliceError = showFailedModal?.slice(12, showFailedModal.length - 41);
 
@@ -40,25 +41,33 @@ function AdminSignUp() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     setShowSpinner(true);
+
     try {
-      const fd = new FormData();
-      fd.append("first_name", signUpDetails.first_name.toLowerCase());
-      fd.append("last_name", signUpDetails.last_name.toLowerCase());
-      fd.append("gender", signUpDetails.gender.toLowerCase());
-      fd.append("email", signUpDetails.email.toLowerCase());
-      fd.append("phone_number", signUpDetails.phone_number);
-      fd.append("password", signUpDetails.password);
-      const response = await axios.post(
-        `${baseUrl}${endpoints.createAdmin}`,
-        fd
-      );
-      if (response) {
-        setShowModal(true);
+      if (!signUpDetails.phone_number.startsWith("234")) {
+        setNumber_234("Phone number must start with 234");
         setTimeout(() => {
-          setShowModal(false);
-          navigate("/admin-dashboard");
-        }, 3000);
-        console.log(response);
+          setNumber_234(null)
+        }, 4000);
+      } else {
+        const fd = new FormData();
+        fd.append("first_name", signUpDetails.first_name.toLowerCase());
+        fd.append("last_name", signUpDetails.last_name.toLowerCase());
+        fd.append("gender", signUpDetails.gender.toLowerCase());
+        fd.append("email", signUpDetails.email.toLowerCase());
+        fd.append("phone_number", signUpDetails.phone_number);
+        fd.append("password", signUpDetails.password);
+        const response = await axios.post(
+          `${baseUrl}${endpoints.createAdmin}`,
+          fd
+        );
+        if (response) {
+          setShowModal(true);
+          setTimeout(() => {
+            setShowModal(false);
+            navigate("/admin-dashboard");
+          }, 3000);
+          console.log(response);
+        }
       }
     } catch (error) {
       if (error) {
@@ -76,7 +85,9 @@ function AdminSignUp() {
     <div>
       {showSpinner && <Spinner />}
       {showModal && <Modal body={"Admin Account Created Successfully 👍🏾"} />}
-      {showFailedModal && <FailedModal body={sliceError} />}
+      {showFailedModal && (
+        <FailedModal body={number_234 ? number_234 : sliceError} />
+      )}
       <div className={styles.wrapper}>
         <section className={styles.sec_01}>
           <img src={company_logo} alt="" />
@@ -109,11 +120,16 @@ function AdminSignUp() {
               onChange={handleOnChange}
             />
             <Input
+              type={"tel"}
               label={"Phone"}
-              type={"number"}
               value={signUpDetails.phone_number}
               name={"phone_number"}
               onChange={handleOnChange}
+              placeholder={"2347000000000"}
+              maxLength={13}
+              inputMode={"numeric"}
+              autoComplete={"off"}
+              autoCapitalize={"off"}
             />
             <Input
               label={"Password"}

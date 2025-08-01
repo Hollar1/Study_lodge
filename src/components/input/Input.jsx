@@ -13,6 +13,9 @@ function Input({
   icon,
   autoComplete,
   autoCapitalize,
+  min,
+  max,
+  maxLength,
 }) {
   return (
     <div className={styles.wrapper}>
@@ -27,6 +30,9 @@ function Input({
           onChange={onChange}
           autoComplete={autoComplete}
           autoCapitalize={autoCapitalize}
+          min={min}
+          max={max}
+          maxLength={maxLength}
         />
         <span>{icon ? <FontAwesomeIcon icon={icon} /> : null}</span>
       </div>
